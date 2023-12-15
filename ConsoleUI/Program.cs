@@ -25,7 +25,7 @@ char karakter = 'A'; // 65 // Ek bilgi: Unicode ASCII tablolarına göre 65 // 1
 string isim = "Ahmet"; // 32-bit // 16mr-bit'e kadar genişleyebiliyor // default: null
 
 string? takmaAd = null;
-if(takmaAd != null)
+if (takmaAd != null)
     Console.WriteLine(takmaAd.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
 
 Console.WriteLine(takmaAd?.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
@@ -69,6 +69,76 @@ double ondalik_sayi = long.MaxValue; // Valid
 double @double = double.MaxValue;
 //double ondalik sayi = long.MaxValue; // Invalid
 
+//long cokBuyukTamsayi = long.MaxValue + 1; // Overflow error
+
+long cokBuyukTamsayi = long.MaxValue;
+Console.WriteLine(cokBuyukTamsayi + 1); // Sayımız ilgili veri tipinin MinValue değerine geri döner.
+
 #endregion
 
+#region Koşullu ifade
 
+bool durum3 = false;
+bool durum4 = true;
+
+if (durum3)
+    Console.WriteLine("Durum 3 Geçerli");
+
+if (durum3)
+{
+    Console.WriteLine("Durum 3 Geçerli");
+}
+else if (durum4)
+{
+    Console.WriteLine("Durum 4 Geçerli");
+}
+else
+{
+    Console.WriteLine("Durumlar Geçersiz");
+}
+
+string komut = "delete";
+
+if (komut == "add" || komut == "update")
+    Console.WriteLine("Ekleme işlemi tamamlandı");
+else if (komut == "delete")
+    Console.WriteLine("Silme işlemi tamamlandı");
+
+switch (komut)
+{
+    case "add":
+    case "update":
+        Console.WriteLine("Ekleme işlemi tamamlandı");
+        break;
+
+    case "delete":
+        Console.WriteLine("Silme işlemi tamamlandı");
+        break;
+
+    default:
+        Console.WriteLine("Geçersiz işlem.");
+        break;
+}
+
+
+string mesaj; // default: null
+
+if (komut == "add" || komut == "update")
+    mesaj = "Ekleme işlemi tamamlandı";
+else if (komut == "delete")
+    mesaj = "Silme işlemi tamamlandı";
+
+mesaj = komut == "add" ? "Ekleme işlemi tamamlandı"  // ternary opreator
+    : komut == "delete" ? "Silme işlemi tamamlandı" 
+    : "Geçersiz işlem";
+
+mesaj = komut switch
+{
+    "add" => "Ekleme işlemi tamamlandı",
+    "delete" => "Silme işlemi tamamlandı",
+    _ => "Geçersiz işlem"
+};
+
+Console.WriteLine(mesaj);
+
+#endregion
