@@ -25,12 +25,12 @@ char karakter = 'A'; // 65 // Ek bilgi: Unicode ASCII tablolarına göre 65 // 1
 string isim = "Ahmet"; // 32-bit // 16mr-bit'e kadar genişleyebiliyor // default: null
 
 string? takmaAd = null;
-if (takmaAd != null)
-    Console.WriteLine(takmaAd.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
+//if (takmaAd != null)
+//    Console.WriteLine(takmaAd.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
 
-Console.WriteLine(takmaAd?.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
+//Console.WriteLine(takmaAd?.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
 
-Console.WriteLine(takmaAd ?? "Takma ismi bulunmuyor"); // takmaAd null ise sağdaki değeri bize verecek.
+//Console.WriteLine(takmaAd ?? "Takma ismi bulunmuyor"); // takmaAd null ise sağdaki değeri bize verecek.
 
 // ek bilgi: DRY - Do not Repeat Yourself
 // ek bilgi: mccall software quality model
@@ -72,7 +72,7 @@ double @double = double.MaxValue;
 //long cokBuyukTamsayi = long.MaxValue + 1; // Overflow error
 
 long cokBuyukTamsayi = long.MaxValue;
-Console.WriteLine(cokBuyukTamsayi + 1); // Sayımız ilgili veri tipinin MinValue değerine geri döner.
+//Console.WriteLine(cokBuyukTamsayi + 1); // Sayımız ilgili veri tipinin MinValue değerine geri döner.
 
 #endregion
 
@@ -140,5 +140,76 @@ mesaj = komut switch
 };
 
 Console.WriteLine(mesaj);
+
+#endregion
+
+#region Döngüler
+
+int sayi4 = 10;
+int sayi5 = sayi4++;
+int birArttir(int sayi)
+{
+    int temp = sayi;
+    sayi = sayi + 1;
+    return temp;
+}
+int sayi6 = ++sayi4;
+int onceBirArttir(int sayi)
+{
+    sayi = sayi + 1;
+    return sayi;
+}
+
+//int sayi6 = ++sayi4;
+//Console.WriteLine(sayi6);
+
+for (int index = 0; // Döngünün en başında bir kere çalışan komutumuz
+    index < 10;  // Her döngünün başında kontrol ettiğimiz koşul
+    ++index // index++ // index = index + 1 // index += 1 // Her döngünün sonunda çalışan atama komutuz
+    )
+{
+    if (index == 5)
+        continue; // Bu döngü adımına devam etmeden bir sonraki döngü admına geçer
+
+    if (index == 7)
+        break; // Döngü sürecini tamamen bitirir
+
+
+    //for (int i = 0; i < 10; ++i)
+    //{ if (i == 0) continue;}
+
+    Console.WriteLine(index);
+}
+
+int index2 = 0;
+while(index2 < 10)
+{
+    //if (index2 == 5) continue; // Sonsuz döngü oluşturmuş oluruz
+    if(index2 == 5)
+    {
+        index2 += 1;
+        continue;
+    }
+
+    if (index2 == 7) break;
+
+    Console.WriteLine(index2);
+
+    index2 += 1;
+}
+
+//while (true // Her döngünün başında kontrol ettiğimiz koşul
+//) // Sonsuz döngülerden her daim kaçınmamız gerekiyor, çünkü program o noktada tıkanacaktır
+//{
+//    // İstisna durumlarda sürekli kontrol için sonsuz döngüler oluşturulabilir fakat programı aksatmayacak ayrı bir işlem parçacığında çalışması gerekiyor
+//}
+
+do
+{
+   // Döngünün ilk adımında herhangi bir koşula tabi olmadan ilgili işlemler yapılır
+   // Döngünün sonraki adımlarında
+} while (false); // Her döngünün sonunda kontrol ettiğimiz koşul
+
+Console.WriteLine("Program Bitti");
 
 #endregion
