@@ -1,4 +1,4 @@
-﻿// Değişkenler
+﻿#region Değişkenler
 
 // var yil = 2023; // Derlemede aşamasında veri tipini kendisi belirliyor
 
@@ -34,3 +34,41 @@ Console.WriteLine(takmaAd ?? "Takma ismi bulunmuyor"); // takmaAd null ise sağd
 
 // ek bilgi: DRY - Do not Repeat Yourself
 // ek bilgi: mccall software quality model
+
+int sayi1 = 10;
+int sayi2 = 20;
+int sayi3 = 30;
+int sayiSonuc = sayi1 + sayi2 * sayi3;
+
+string isim2 = "Ahmet";
+string soyad = "Çetinkaya";
+string tamIsim = isim2 + " " + soyad;
+
+bool durum1 = true;
+bool durum2 = false;
+bool sonucDurum = durum1 && durum2; // false
+bool sonucDurum2 = durum1 || durum2; // true
+
+int tamSayi = 10;
+double ondalikLiSayi = tamSayi; // 10.0 // Implisit (biliçsiz) tür dönüşümü
+
+double ondalikliSayi2 = 10.5;
+//int tamSayi2 = ondalikliSayi2; // Veri kaybı olacağı için implist şekilde tür dönüşümü yapmayacaktır
+int tamSayi2 = (int)ondalikliSayi2; // Casting // Explist (bilinçli) tür dönüşümü
+
+long buyukTamSayi = long.MaxValue; // 64-bit
+int normalTamSayi = (int)buyukTamSayi; // 64-bit -> 32-bit // Hata: -1
+
+// Daha güvenli tür dönüşüm işlemleri için:
+//int normalTamSayi2 = Convert.ToInt32(buyukTamSayi); // Error: değer int'e göre çok büyük
+string metinselTamSayi = buyukTamSayi.ToString();
+
+//double 2OndalıkSayı // Invalid
+double ondalik_sayi = long.MaxValue; // Valid
+//double double = double.MaxValue;
+double @double = double.MaxValue;
+//double ondalik sayi = long.MaxValue; // Invalid
+
+#endregion
+
+
