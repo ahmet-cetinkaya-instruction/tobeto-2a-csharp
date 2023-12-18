@@ -8,6 +8,8 @@
 // İlkel/Değer tip
 //int yil = 2023; // 32-bit ~-2.1mr - ~2.1mr // default değeri: 0 (ondalik) // 00000000 (ikilik)
 //short yil = 2023; // 16-bit ~-32bin - ~32bin // default: 0
+using ConsoleUI;
+
 ushort yil = 2023; // unsigned // 16-bit 0 - ~65bin // default: 0
 
 byte yas = 25; // 0-255 // default: 0
@@ -267,5 +269,25 @@ int hepsiniTopla(
 int sonuc3 = hepsiniTopla(0, 40, 60, 90, 50, 20);
 
 // ref, out // temel/ilkel veri tipleri üzerinde kullanılır
+
+// ref, fonksiyona kendi içinde değişken oluşturma, referans ettiğim değişkeni kullan demiş oluyoruz.
+void ikiyleCarpımınıDosyaOlarakKaydet(ref int sayi, out int sayi2)
+{
+    sayi *= 2;
+    sayi2 = 1; // out, Fonksiyon/Metot içinde ilk atama işlemini verme zorunluğuğu getirir.
+
+    Console.WriteLine($"ikiyleCarpımınıDosyaOlarakKaydet scope sayi: {sayi}");
+    //.. bu parametre değişkenini kullanarak başka işlemleri yaptığını varsayalım
+}
+
+int sayi = 2;
+int sayiOut;
+ikiyleCarpımınıDosyaOlarakKaydet(ref sayi, out sayiOut);
+
+Console.WriteLine("ana scope sayi " + sayi + " sayiOut: " + sayiOut);
+
+// Metot
+MathHelper mathHelper = new MathHelper(); // referans tip
+mathHelper.topla(1,2);
 
 #endregion
