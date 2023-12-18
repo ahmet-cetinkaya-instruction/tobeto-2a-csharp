@@ -291,3 +291,25 @@ MathHelper mathHelper = new MathHelper(); // referans tip
 mathHelper.topla(1,2);
 
 #endregion
+
+#region Diziler ve Koleksiyon
+Console.WriteLine("--------------- Diziler ve Koleksiyon ---------------");
+// Referans Tip
+string[] sıra = new string[5]; // 5 dizinin içerisindeki yer sayısı
+
+sıra[0] = "Muhammet";
+sıra[2] = "Umut";
+
+//Console.WriteLine($"sıra dizisindeki 2. indeksteki değeri: {sıra[2]}");
+
+for (int index = 0; index < sıra.Length; index++)
+{
+    string sıradakıKişininAdı = sıra[index];
+
+    Console.WriteLine($"sıra dizisindeki {index}. indeksteki değeri: {sıradakıKişininAdı ?? "null"}");
+}
+//foreach (string sıradakıKişininAdı in sıra)
+//{
+//    Console.WriteLine(sıradakıKişininAdı);
+//}
+#endregion
