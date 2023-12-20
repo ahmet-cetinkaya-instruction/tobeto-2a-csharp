@@ -392,3 +392,25 @@ katilimcilar.Add("ahmet@tobetto.com");
 katilimcilar.Add("said@tobetto.com");
 
 #endregion
+
+#region Class
+Console.WriteLine("-------- Class -------");
+// Referans Tip
+// Class'lar Nesneler oluşturmak için bir şablondur diyebiliriz.
+Ogrenci ogrenci = new(); // Nesne // Referans
+ogrenci.FirstName = "Ahmet";
+ogrenci.LastName = "Çetinkaya";
+Console.WriteLine(ogrenci.FullName);
+
+Ogrenci ogrenci1 = new() {
+    FirstName = "Muhammet",
+    LastName = "Mutlo",
+    Yas = 25
+};
+
+Ogrenci ogrenci2 = ogrenci1;
+ogrenci2.LastName = "Mutlu";
+
+Console.WriteLine($"{ogrenci1.FirstName} - {ogrenci1.LastName} {ogrenci1.Yas}");
+Console.WriteLine($"{ogrenci2.FirstName} - {ogrenci2.LastName} {ogrenci2.Yas}");
+#endregion
