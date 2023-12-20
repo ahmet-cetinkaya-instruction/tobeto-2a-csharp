@@ -9,6 +9,8 @@
 //int yil = 2023; // 32-bit ~-2.1mr - ~2.1mr // default değeri: 0 (ondalik) // 00000000 (ikilik)
 //short yil = 2023; // 16-bit ~-32bin - ~32bin // default: 0
 using ConsoleUI;
+using System.Collections;
+using System.Runtime.CompilerServices;
 
 ushort yil = 2023; // unsigned // 16-bit 0 - ~65bin // default: 0
 
@@ -131,7 +133,7 @@ else if (komut == "delete")
     mesaj = "Silme işlemi tamamlandı";
 
 mesaj = komut == "add" ? "Ekleme işlemi tamamlandı"  // ternary opreator
-    : komut == "delete" ? "Silme işlemi tamamlandı" 
+    : komut == "delete" ? "Silme işlemi tamamlandı"
     : "Geçersiz işlem";
 
 mesaj = komut switch
@@ -184,10 +186,10 @@ for (int index = 0; // Döngünün en başında bir kere çalışan komutumuz
 }
 
 int index2 = 0;
-while(index2 < 10)
+while (index2 < 10)
 {
     //if (index2 == 5) continue; // Sonsuz döngü oluşturmuş oluruz
-    if(index2 == 5)
+    if (index2 == 5)
     {
         index2 += 1;
         continue;
@@ -208,8 +210,8 @@ while(index2 < 10)
 
 do
 {
-   // Döngünün ilk adımında herhangi bir koşula tabi olmadan ilgili işlemler yapılır
-   // Döngünün sonraki adımlarında
+    // Döngünün ilk adımında herhangi bir koşula tabi olmadan ilgili işlemler yapılır
+    // Döngünün sonraki adımlarında
 } while (false); // Her döngünün sonunda kontrol ettiğimiz koşul
 
 Console.WriteLine("Program Bitti");
@@ -233,7 +235,7 @@ int topla(
     int sayi1, // Zorunlu parametre
     int sayi2 = 0, // Opsiyonel parametre // En son olacak şekilde kullanabiliriz.
     int sayi3 = 10
-    ) 
+    )
 {
     int toplamaSonuc = sayi1 + sayi2;
     // ...
@@ -259,7 +261,7 @@ int hepsiniTopla(
     int baslangicSayisi, params int[] sayilar) // params sadece bir tane ve en son olacak şekilde kullanabiliriz.
 {
     int toplam = baslangicSayisi;
-    foreach(int sayi in sayilar)
+    foreach (int sayi in sayilar)
     {
         toplam += sayi;
     }
@@ -288,23 +290,22 @@ Console.WriteLine("ana scope sayi " + sayi + " sayiOut: " + sayiOut);
 
 // Metot
 MathHelper mathHelper = new MathHelper(); // referans tip
-mathHelper.topla(1,2);
+mathHelper.topla(1, 2);
 
 #endregion
 
 #region Diziler ve Koleksiyon
 Console.WriteLine("--------------- Diziler ve Koleksiyon ---------------");
 // Referans Tip
-string[] sıra = new string[5]; // 5 dizinin içerisindeki yer sayısı
-
-sıra[0] = "Muhammet";
-sıra[2] = "Umut";
+string[] sira = new string[5]; // 5 dizinin içerisindeki SABIT yer sayısı
+sira[0] = "Muhammet";
+sira[2] = "Umut";
 
 //Console.WriteLine($"sıra dizisindeki 2. indeksteki değeri: {sıra[2]}");
 
-for (int index = 0; index < sıra.Length; index++)
+for (int index = 0; index < sira.Length; index++)
 {
-    string sıradakıKişininAdı = sıra[index];
+    string sıradakıKişininAdı = sira[index];
 
     Console.WriteLine($"sıra dizisindeki {index}. indeksteki değeri: {sıradakıKişininAdı ?? "null"}");
 }
@@ -312,4 +313,82 @@ for (int index = 0; index < sıra.Length; index++)
 //{
 //    Console.WriteLine(sıradakıKişininAdı);
 //}
+
+string[] sira2 = { "Muhammet", "Umut" }; // new string[2] // Verdiğimiz başlangıç değeri kadar array oluşturacatır.
+
+string[] sira3 = new string[2] {
+    "Muhammet",
+    "Umut"
+};
+//sira3[2] = "Hacer"; // Error
+
+Array.Resize(ref sira3, 3);
+sira3[2] = "Hacer";
+
+string[,] cokluSira = new string[2, 2];
+cokluSira[0, 0] = "Ahmet";
+cokluSira[0, 1] = "Güven";
+
+Array.Sort(sira);
+Array.Fill(sira, "Boş");
+
+bool ahmetVarMi = sira.Contains("Ahmet");
+
+string siraString = string.Join(", ", sira);
+Console.WriteLine(siraString);
+
+// Koleksiyon
+Console.WriteLine("-------- Koleksionlar --------");
+
+// List
+List<string> sira4 = new List<string>();
+
+sira4.Add("Ahmet");
+sira4.Add("Hacer");
+sira4.Add("Emir");
+
+sira4.Remove("Ahmet");
+
+sira4[0] = "Furkan";
+
+foreach (string siradakiIsim in sira4)
+{
+    Console.WriteLine(siradakiIsim);
+}
+
+// Dictionary
+// Anahter ve Değer eşleşmesiyle bir sözlük yapısı oluşturur.
+//Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+Dictionary<string, string> sira5 = new();
+
+sira5.Add(key: "Birinci Sıra", value: "Ahmet");
+
+Console.WriteLine(sira5["Birinci Sıra"]);
+
+foreach (KeyValuePair<string, string> siradaki in sira5)
+{
+    Console.WriteLine($"{siradaki.Key}, {siradaki.Value}");
+}
+
+// ArrayList
+// Eleman veri tipleri dinamiktir.
+ArrayList sira6 = new();
+
+sira6.Add("Ahmet");
+sira6.Add(null);
+sira6.Add(15);
+sira6.Add(true);
+
+// LinkedList
+LinkedList<string> sira7 = new();
+sira7.AddFirst("Ahmet");
+var sira7IlkKisi = sira7.First.Value;
+
+// HashSet
+// İçindeki elemanların tamamen birbirinden farklı olmak durumunda.
+HashSet<string> katilimcilar = new();
+
+katilimcilar.Add("ahmet@tobetto.com");
+katilimcilar.Add("said@tobetto.com");
+
 #endregion
