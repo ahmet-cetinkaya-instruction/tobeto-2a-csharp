@@ -409,7 +409,6 @@ Ogrenci ogrenci1 = new() {
     LastName = "Mutlo",
     Yas = 25
 };
-
 Ogrenci ogrenci2 = ogrenci1;
 ogrenci2.LastName = "Mutlu";
 
@@ -489,4 +488,22 @@ Console.WriteLine(
     stringBuilder.ToString() // 0x7292 // Allocation
     );
 
+#endregion
+
+#region Nesneye Yönemli Programlama (OOP)
+/*
+ * Sınıflar ve Nesneler: Yazılım, gerçek dünyadaki ve iş sürecindeki nesnelerin özelliklerinin tanımı ve davranışlarının tanımını
+ * içeren sınıflardır, ve sınıflarla üretilen nesnelerle oluşur.
+ * 
+ * Kapsülleme (Encapsulation): özellikleri, davranışları bir arada tutmak ve bunlara olan dışardan erişimini kontrol edebilmemiz
+ * 
+ * Katılım (Inheritance): Sınıflar arasında bir "parent-child" ilişkisi kurulması ve bir sınıfın özellikleri ve davranışlarını 
+ * diğer sınıfa miras olarak geçebilmesi. Böylece yazılımın bazı parçaları tekrar kullanılabilir. 
+ * 
+ * Çok Biçimlilik (Polymorphism): Aynı isimdeki davranışların farklı sınıflarda farklı şekilerde davranabilemsini sağlar, 
+ * bu da yazılımında esnekliğini artırır.
+ * 
+ * Soyutlama (Abstraction): Karmaşık sistemleri basitleştirmek için ortak özellikleri belirleyerek gerçek hayatta da olduğu gibi
+ * soyutlama yapılır.
+ */
 #endregion
