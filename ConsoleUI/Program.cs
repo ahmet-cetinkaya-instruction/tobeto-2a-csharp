@@ -1,5 +1,9 @@
-﻿#region Değişkenler
+﻿using ConsoleUI;
+using System.Collections;
+using System.Collections.Immutable;
+using System.Text;
 
+#region Değişkenler
 // var yil = 2023; // Derlemede aşamasında veri tipini kendisi belirliyor
 
 // Type safety, tip güvenli
@@ -8,9 +12,6 @@
 // İlkel/Değer tip
 //int yil = 2023; // 32-bit ~-2.1mr - ~2.1mr // default değeri: 0 (ondalik) // 00000000 (ikilik)
 //short yil = 2023; // 16-bit ~-32bin - ~32bin // default: 0
-using ConsoleUI;
-using System.Collections;
-using System.Runtime.CompilerServices;
 
 ushort yil = 2023; // unsigned // 16-bit 0 - ~65bin // default: 0
 
@@ -443,4 +444,49 @@ cities1[0] // 0x3271
     = "Antalya";
 
 Console.WriteLine(string.Join(", ", cities2));
+
+// String veri tipi
+const int number3 = 10; // Sabit değere sahip değişken
+//number3 = 11;
+
+// Immutable
+ImmutableArray<string> cities3 = cities1.ToImmutableArray();
+//cities3[0] = "Konya";
+
+string city1 = "Konya"; // 0x4242
+string city2 = "Ankara"; // 0x0606
+
+city2 = city1; // 0x0606 -> 0x4242
+#region Temsili arka plan
+ImmutableArray<char> setString(ImmutableArray<char> city1Array // 0x4242
+    )
+{
+    ImmutableArray<char> city1ArrayToAntalya = // 0x0707
+        ImmutableArray.Create('A', 'n', 't', 'a', 'l', 'y', 'a'); // char[7]
+
+    //Array.Resize(ref city1Array, 7);
+    //for (int i = 0; i < city1Array.Length; i++)
+    //{
+    //    city1Array[i] = city1ArrayToAntalya[i];
+    //}
+
+    return city1ArrayToAntalya; // 0x0707 
+}
+#endregion
+
+
+city1 = "Antalya"; // 0x4242 -> 0x0707
+city1 += " Güzeldir"; // 0x0707 -> 0x0807
+
+Console.WriteLine(city2); // Konya
+
+// StringBuilder
+StringBuilder stringBuilder = new(); // 0x9284 // Allocation
+stringBuilder.Append("Antalya");  // 0x9284
+stringBuilder.Append(" Güzeldir"); // 0x9284 
+
+Console.WriteLine(
+    stringBuilder.ToString() // 0x7292 // Allocation
+    );
+
 #endregion
