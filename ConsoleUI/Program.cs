@@ -85,44 +85,44 @@ long cokBuyukTamsayi = long.MaxValue;
 bool durum3 = false;
 bool durum4 = true;
 
-if (durum3)
-    Console.WriteLine("Durum 3 Geçerli");
+//if (durum3)
+//    Console.WriteLine("Durum 3 Geçerli");
 
-if (durum3)
-{
-    Console.WriteLine("Durum 3 Geçerli");
-}
-else if (durum4)
-{
-    Console.WriteLine("Durum 4 Geçerli");
-}
-else
-{
-    Console.WriteLine("Durumlar Geçersiz");
-}
+//if (durum3)
+//{
+//    Console.WriteLine("Durum 3 Geçerli");
+//}
+//else if (durum4)
+//{
+//    Console.WriteLine("Durum 4 Geçerli");
+//}
+//else
+//{
+//    Console.WriteLine("Durumlar Geçersiz");
+//}
 
 string komut = "delete";
 
-if (komut == "add" || komut == "update")
-    Console.WriteLine("Ekleme işlemi tamamlandı");
-else if (komut == "delete")
-    Console.WriteLine("Silme işlemi tamamlandı");
+//if (komut == "add" || komut == "update")
+//    Console.WriteLine("Ekleme işlemi tamamlandı");
+//else if (komut == "delete")
+//    Console.WriteLine("Silme işlemi tamamlandı");
 
-switch (komut)
-{
-    case "add":
-    case "update":
-        Console.WriteLine("Ekleme işlemi tamamlandı");
-        break;
+//switch (komut)
+//{
+//    case "add":
+//    case "update":
+//        Console.WriteLine("Ekleme işlemi tamamlandı");
+//        break;
 
-    case "delete":
-        Console.WriteLine("Silme işlemi tamamlandı");
-        break;
+//    case "delete":
+//        Console.WriteLine("Silme işlemi tamamlandı");
+//        break;
 
-    default:
-        Console.WriteLine("Geçersiz işlem.");
-        break;
-}
+//    default:
+//        Console.WriteLine("Geçersiz işlem.");
+//        break;
+//}
 
 
 string mesaj; // default: null
@@ -143,7 +143,7 @@ mesaj = komut switch
     _ => "Geçersiz işlem"
 };
 
-Console.WriteLine(mesaj);
+//Console.WriteLine(mesaj);
 
 #endregion
 
@@ -182,7 +182,7 @@ for (int index = 0; // Döngünün en başında bir kere çalışan komutumuz
     //for (int i = 0; i < 10; ++i)
     //{ if (i == 0) continue;}
 
-    Console.WriteLine(index);
+    //Console.WriteLine(index);
 }
 
 int index2 = 0;
@@ -197,7 +197,7 @@ while (index2 < 10)
 
     if (index2 == 7) break;
 
-    Console.WriteLine(index2);
+    //Console.WriteLine(index2);
 
     index2 += 1;
 }
@@ -214,7 +214,7 @@ do
     // Döngünün sonraki adımlarında
 } while (false); // Her döngünün sonunda kontrol ettiğimiz koşul
 
-Console.WriteLine("Program Bitti");
+//Console.WriteLine("Program Bitti");
 
 #endregion
 
@@ -225,7 +225,7 @@ Console.WriteLine("Program Bitti");
 void yazdir(string icerik)
 {
     // ...
-    Console.WriteLine(icerik); // Printer'a içeriği yazdıran fonksiyon olarak da düşünebiliriz.
+    //Console.WriteLine(icerik); // Printer'a içeriği yazdıran fonksiyon olarak da düşünebiliriz.
 }
 
 // Fonksiyon
@@ -278,7 +278,7 @@ void ikiyleCarpımınıDosyaOlarakKaydet(ref int sayi, out int sayi2)
     sayi *= 2;
     sayi2 = 1; // out, Fonksiyon/Metot içinde ilk atama işlemini verme zorunluğuğu getirir.
 
-    Console.WriteLine($"ikiyleCarpımınıDosyaOlarakKaydet scope sayi: {sayi}");
+    //Console.WriteLine($"ikiyleCarpımınıDosyaOlarakKaydet scope sayi: {sayi}");
     //.. bu parametre değişkenini kullanarak başka işlemleri yaptığını varsayalım
 }
 
@@ -286,7 +286,7 @@ int sayi = 2;
 int sayiOut;
 ikiyleCarpımınıDosyaOlarakKaydet(ref sayi, out sayiOut);
 
-Console.WriteLine("ana scope sayi " + sayi + " sayiOut: " + sayiOut);
+//Console.WriteLine("ana scope sayi " + sayi + " sayiOut: " + sayiOut);
 
 // Metot
 MathHelper mathHelper = new MathHelper(); // referans tip
@@ -295,7 +295,7 @@ mathHelper.topla(1, 2);
 #endregion
 
 #region Diziler ve Koleksiyon
-Console.WriteLine("--------------- Diziler ve Koleksiyon ---------------");
+//Console.WriteLine("--------------- Diziler ve Koleksiyon ---------------");
 // Referans Tip
 string[] sira = new string[5]; // 5 dizinin içerisindeki SABIT yer sayısı
 sira[0] = "Muhammet";
@@ -307,7 +307,7 @@ for (int index = 0; index < sira.Length; index++)
 {
     string sıradakıKişininAdı = sira[index];
 
-    Console.WriteLine($"sıra dizisindeki {index}. indeksteki değeri: {sıradakıKişininAdı ?? "null"}");
+    //Console.WriteLine($"sıra dizisindeki {index}. indeksteki değeri: {sıradakıKişininAdı ?? "null"}");
 }
 //foreach (string sıradakıKişininAdı in sıra)
 //{
@@ -335,10 +335,10 @@ Array.Fill(sira, "Boş");
 bool ahmetVarMi = sira.Contains("Ahmet");
 
 string siraString = string.Join(", ", sira);
-Console.WriteLine(siraString);
+//Console.WriteLine(siraString);
 
 // Koleksiyon
-Console.WriteLine("-------- Koleksionlar --------");
+//Console.WriteLine("-------- Koleksionlar --------");
 
 // List
 List<string> sira4 = new List<string>();
@@ -353,7 +353,7 @@ sira4[0] = "Furkan";
 
 foreach (string siradakiIsim in sira4)
 {
-    Console.WriteLine(siradakiIsim);
+    //Console.WriteLine(siradakiIsim);
 }
 
 // Dictionary
@@ -363,11 +363,11 @@ Dictionary<string, string> sira5 = new();
 
 sira5.Add(key: "Birinci Sıra", value: "Ahmet");
 
-Console.WriteLine(sira5["Birinci Sıra"]);
+//Console.WriteLine(sira5["Birinci Sıra"]);
 
 foreach (KeyValuePair<string, string> siradaki in sira5)
 {
-    Console.WriteLine($"{siradaki.Key}, {siradaki.Value}");
+    //Console.WriteLine($"{siradaki.Key}, {siradaki.Value}");
 }
 
 // ArrayList
@@ -394,13 +394,14 @@ katilimcilar.Add("said@tobetto.com");
 #endregion
 
 #region Class
-Console.WriteLine("-------- Class -------");
+//Console.WriteLine("-------- Class -------");
 // Referans Tip
+// C# Nesneye Dayalı (OOP) Programlama Dili
 // Class'lar Nesneler oluşturmak için bir şablondur diyebiliriz.
 Ogrenci ogrenci = new(); // Nesne // Referans
 ogrenci.FirstName = "Ahmet";
-ogrenci.LastName = "Çetinkaya";
-Console.WriteLine(ogrenci.FullName);
+ogrenci.LastName = "Çetinkaya"; // 
+//Console.WriteLine(ogrenci.FullName);
 
 Ogrenci ogrenci1 = new() {
     FirstName = "Muhammet",
@@ -411,6 +412,35 @@ Ogrenci ogrenci1 = new() {
 Ogrenci ogrenci2 = ogrenci1;
 ogrenci2.LastName = "Mutlu";
 
-Console.WriteLine($"{ogrenci1.FirstName} - {ogrenci1.LastName} {ogrenci1.Yas}");
-Console.WriteLine($"{ogrenci2.FirstName} - {ogrenci2.LastName} {ogrenci2.Yas}");
+//Console.WriteLine($"{ogrenci1.FirstName} - {ogrenci1.LastName} {ogrenci1.Yas}");
+//Console.WriteLine($"{ogrenci2.FirstName} - {ogrenci2.LastName} {ogrenci2.Yas}");
+#endregion
+
+#region Değer ve Referans Veri Tipleri
+
+// Değer Veri Tipleri
+int number1 = 10; // 10 // 30
+int number2 = 20; // 20 // 10
+
+number2 = number1; // number2: 20 -> 10
+
+number1 = 30; // number1: 10 -> 30
+
+Console.WriteLine(number2); // 10
+
+// Referans Veri Tipleri
+string[] cities1 = // 0x3271 (Hexidecimal 16'lık sayı sistemindeki sayı) 
+    new string[2] { "Konya", "Istanbul" }; // Veri HEAP'daki ayrılan yere yerleştirilir, örneğin adresi 0x3271
+string[] cities2 = // 0x5721
+    new string[2] { "Ankara", "Izmir" }; // Veri HEAP'daki ayrılan yere yerleştirilir, örneğin adresi 0x5721
+
+cities2 = cities1; // 0x5721 -> 0x3271
+//for (int i = 0; i < cities1.Length; i++)
+//    cities2[i] // 0x5721
+//        = cities1[i];
+
+cities1[0] // 0x3271
+    = "Antalya";
+
+Console.WriteLine(string.Join(", ", cities2));
 #endregion
