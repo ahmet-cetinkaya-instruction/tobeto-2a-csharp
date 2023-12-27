@@ -1,7 +1,7 @@
 ﻿namespace ConsoleUI;
 
 // Class default access modifier (erişim belirteci): internal
-class Student : User //: Object
+class Student : User // Çok düzeyli miras
 {
     internal string PhoneNumber { get; set; }
 
@@ -39,6 +39,15 @@ class Student : User //: Object
     //{
     //    return $"{FirstName} {LastName}";
     //}
+
+    internal Student(int id, string firstName, string lastName, string nickName, string email, string password, string phoneNumer, int yas) 
+        : base(id, firstName, lastName, nickName, email, password)
+    {
+        PhoneNumber = phoneNumer;
+        Yas = yas;
+
+        Console.WriteLine("Bir Student Oluştu.");
+    }
 
     public override string ToString()
     {

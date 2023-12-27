@@ -1,7 +1,7 @@
-﻿using ConsoleUI;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Immutable;
 using System.Text;
+using ConsoleUI;
 
 #region Değişkenler
 // var yil = 2023; // Derlemede aşamasında veri tipini kendisi belirliyor
@@ -30,6 +30,7 @@ char karakter = 'A'; // 65 // Ek bilgi: Unicode ASCII tablolarına göre 65 // 1
 string isim = "Ahmet"; // 32-bit // 16mr-bit'e kadar genişleyebiliyor // default: null
 
 string? takmaAd = null;
+
 //if (takmaAd != null)
 //    Console.WriteLine(takmaAd.ToUpper()); // takmaAd null ise ToUpper metodunu çalıştırmaya çalışmayacak ve null değerini bize verecek.
 
@@ -58,6 +59,7 @@ int tamSayi = 10;
 double ondalikLiSayi = tamSayi; // 10.0 // Implisit (biliçsiz) tür dönüşümü
 
 double ondalikliSayi2 = 10.5;
+
 //int tamSayi2 = ondalikliSayi2; // Veri kaybı olacağı için implist şekilde tür dönüşümü yapmayacaktır
 int tamSayi2 = (int)ondalikliSayi2; // Casting // Explist (bilinçli) tür dönüşümü
 
@@ -70,8 +72,10 @@ string metinselTamSayi = buyukTamSayi.ToString();
 
 //double 2OndalıkSayı // Invalid
 double ondalik_sayi = long.MaxValue; // Valid
+
 //double double = double.MaxValue;
 double @double = double.MaxValue;
+
 //double ondalik sayi = long.MaxValue; // Invalid
 
 //long cokBuyukTamsayi = long.MaxValue + 1; // Overflow error
@@ -133,9 +137,12 @@ if (komut == "add" || komut == "update")
 else if (komut == "delete")
     mesaj = "Silme işlemi tamamlandı";
 
-mesaj = komut == "add" ? "Ekleme işlemi tamamlandı"  // ternary opreator
-    : komut == "delete" ? "Silme işlemi tamamlandı"
-    : "Geçersiz işlem";
+mesaj =
+    komut == "add"
+        ? "Ekleme işlemi tamamlandı" // ternary opreator
+        : komut == "delete"
+            ? "Silme işlemi tamamlandı"
+            : "Geçersiz işlem";
 
 mesaj = komut switch
 {
@@ -168,17 +175,17 @@ int onceBirArttir(int sayi)
 //int sayi6 = ++sayi4;
 //Console.WriteLine(sayi6);
 
-for (int index = 0; // Döngünün en başında bir kere çalışan komutumuz
-    index < 10;  // Her döngünün başında kontrol ettiğimiz koşul
-    ++index // index++ // index = index + 1 // index += 1 // Her döngünün sonunda çalışan atama komutuz
-    )
+for (
+    int index = 0; // Döngünün en başında bir kere çalışan komutumuz
+    index < 10; // Her döngünün başında kontrol ettiğimiz koşul
+        ++index // index++ // index = index + 1 // index += 1 // Her döngünün sonunda çalışan atama komutuz
+)
 {
     if (index == 5)
         continue; // Bu döngü adımına devam etmeden bir sonraki döngü admına geçer
 
     if (index == 7)
         break; // Döngü sürecini tamamen bitirir
-
 
     //for (int i = 0; i < 10; ++i)
     //{ if (i == 0) continue;}
@@ -196,7 +203,8 @@ while (index2 < 10)
         continue;
     }
 
-    if (index2 == 7) break;
+    if (index2 == 7)
+        break;
 
     //Console.WriteLine(index2);
 
@@ -236,7 +244,7 @@ int topla(
     int sayi1, // Zorunlu parametre
     int sayi2 = 0, // Opsiyonel parametre // En son olacak şekilde kullanabiliriz.
     int sayi3 = 10
-    )
+)
 {
     int toplamaSonuc = sayi1 + sayi2;
     // ...
@@ -259,7 +267,9 @@ yazdir(sonuc.ToString()); // Pozisyon bazlı parametre
 // Params
 int hepsiniTopla(
     // Parametre tanımlama özellikleri
-    int baslangicSayisi, params int[] sayilar) // params sadece bir tane ve en son olacak şekilde kullanabiliriz.
+    int baslangicSayisi,
+    params int[] sayilar
+) // params sadece bir tane ve en son olacak şekilde kullanabiliriz.
 {
     int toplam = baslangicSayisi;
     foreach (int sayi in sayilar)
@@ -310,6 +320,7 @@ for (int index = 0; index < sira.Length; index++)
 
     //Console.WriteLine($"sıra dizisindeki {index}. indeksteki değeri: {sıradakıKişininAdı ?? "null"}");
 }
+
 //foreach (string sıradakıKişininAdı in sıra)
 //{
 //    Console.WriteLine(sıradakıKişininAdı);
@@ -317,10 +328,8 @@ for (int index = 0; index < sira.Length; index++)
 
 string[] sira2 = { "Muhammet", "Umut" }; // new string[2] // Verdiğimiz başlangıç değeri kadar array oluşturacatır.
 
-string[] sira3 = new string[2] {
-    "Muhammet",
-    "Umut"
-};
+string[] sira3 = new string[2] { "Muhammet", "Umut" };
+
 //sira3[2] = "Hacer"; // Error
 
 Array.Resize(ref sira3, 3);
@@ -336,6 +345,7 @@ Array.Fill(sira, "Boş");
 bool ahmetVarMi = sira.Contains("Ahmet");
 
 string siraString = string.Join(", ", sira);
+
 //Console.WriteLine(siraString);
 
 // Koleksiyon
@@ -399,18 +409,21 @@ katilimcilar.Add("said@tobetto.com");
 // Referans Tip
 // C# Nesneye Dayalı (OOP) Programlama Dili
 // Class'lar Nesneler oluşturmak için bir şablondur diyebiliriz.
-Student ogrenci = new(); // Nesne // Referans
-ogrenci.FirstName = "Ahmet";
-ogrenci.LastName = "Çetinkaya"; // 
-//Console.WriteLine(ogrenci.FullName);
+//Student ogrenci = new(); // Nesne // Referans
+//ogrenci.FirstName = "Ahmet";
+//ogrenci.LastName = "Çetinkaya"; //
 
-Student ogrenci1 = new() {
-    FirstName = "Muhammet",
-    LastName = "Mutlo",
-    Yas = 25
-};
-Student ogrenci2 = ogrenci1;
-ogrenci2.LastName = "Mutlu";
+////Console.WriteLine(ogrenci.FullName);
+
+//Student ogrenci1 =
+//    new()
+//    {
+//        FirstName = "Muhammet",
+//        LastName = "Mutlo",
+//        Yas = 25
+//    };
+//Student ogrenci2 = ogrenci1;
+//ogrenci2.LastName = "Mutlu";
 
 //Console.WriteLine($"{ogrenci1.FirstName} - {ogrenci1.LastName} {ogrenci1.Yas}");
 //Console.WriteLine($"{ogrenci2.FirstName} - {ogrenci2.LastName} {ogrenci2.Yas}");
@@ -429,27 +442,32 @@ number1 = 30; // number1: 10 -> 30
 Console.WriteLine(number2); // 10
 
 // Referans Veri Tipleri
-string[] cities1 = // 0x3271 (Hexidecimal 16'lık sayı sistemindeki sayı) 
-    new string[2] { "Konya", "Istanbul" }; // Veri HEAP'daki ayrılan yere yerleştirilir, örneğin adresi 0x3271
+string[] cities1 = // 0x3271 (Hexidecimal 16'lık sayı sistemindeki sayı)
+new string[2] { "Konya", "Istanbul" }; // Veri HEAP'daki ayrılan yere yerleştirilir, örneğin adresi 0x3271
 string[] cities2 = // 0x5721
-    new string[2] { "Ankara", "Izmir" }; // Veri HEAP'daki ayrılan yere yerleştirilir, örneğin adresi 0x5721
+new string[2] { "Ankara", "Izmir" }; // Veri HEAP'daki ayrılan yere yerleştirilir, örneğin adresi 0x5721
 
 cities2 = cities1; // 0x5721 -> 0x3271
+
 //for (int i = 0; i < cities1.Length; i++)
 //    cities2[i] // 0x5721
 //        = cities1[i];
 
-cities1[0] // 0x3271
-    = "Antalya";
+cities1[
+    0
+] // 0x3271
+= "Antalya";
 
 Console.WriteLine(string.Join(", ", cities2));
 
 // String veri tipi
 const int number3 = 10; // Sabit değere sahip değişken
+
 //number3 = 11;
 
 // Immutable
 ImmutableArray<string> cities3 = cities1.ToImmutableArray();
+
 //cities3[0] = "Konya";
 
 string city1 = "Konya"; // 0x4242
@@ -457,11 +475,12 @@ string city2 = "Ankara"; // 0x0606
 
 city2 = city1; // 0x0606 -> 0x4242
 #region Temsili arka plan
-ImmutableArray<char> setString(ImmutableArray<char> city1Array // 0x4242
-    )
+ImmutableArray<char> setString(
+    ImmutableArray<char> city1Array // 0x4242
+)
 {
     ImmutableArray<char> city1ArrayToAntalya = // 0x0707
-        ImmutableArray.Create('A', 'n', 't', 'a', 'l', 'y', 'a'); // char[7]
+    ImmutableArray.Create('A', 'n', 't', 'a', 'l', 'y', 'a'); // char[7]
 
     //Array.Resize(ref city1Array, 7);
     //for (int i = 0; i < city1Array.Length; i++)
@@ -469,7 +488,7 @@ ImmutableArray<char> setString(ImmutableArray<char> city1Array // 0x4242
     //    city1Array[i] = city1ArrayToAntalya[i];
     //}
 
-    return city1ArrayToAntalya; // 0x0707 
+    return city1ArrayToAntalya; // 0x0707
 }
 #endregion
 
@@ -481,12 +500,12 @@ Console.WriteLine(city2); // Konya
 
 // StringBuilder
 StringBuilder stringBuilder = new(); // 0x9284 // Allocation
-stringBuilder.Append("Antalya");  // 0x9284
-stringBuilder.Append(" Güzeldir"); // 0x9284 
+stringBuilder.Append("Antalya"); // 0x9284
+stringBuilder.Append(" Güzeldir"); // 0x9284
 
 Console.WriteLine(
     stringBuilder.ToString() // 0x7292 // Allocation
-    );
+);
 
 #endregion
 
@@ -495,37 +514,58 @@ Console.WriteLine(
 /*
  * Sınıflar ve Nesneler: Yazılım, gerçek dünyadaki ve iş sürecindeki nesnelerin özelliklerinin tanımı ve davranışlarının tanımını
  * içeren sınıflardır, ve sınıflarla üretilen nesnelerle oluşur.
- * 
+ *
  * Kapsülleme (Encapsulation): özellikleri, davranışları bir arada tutmak ve bunlara olan dışardan erişimini kontrol edebilmemiz
- * 
- * Katılım (Inheritance): Sınıflar arasında bir "parent-child" ve aynı zamanda is-a ilişkisi kurulması, 
- * bir sınıfın özellikleri ve davranışlarını diğer sınıfa miras olarak geçebilmesi. 
- * Böylece yazılımın bazı parçaları tekrar kullanılabilir. 
- * 
- * Çok Biçimlilik (Polymorphism): Aynı isimdeki davranışların farklı sınıflarda farklı şekilerde davranabilemsini sağlar, 
+ *
+ * Katılım (Inheritance): Sınıflar arasında bir "parent-child" ve aynı zamanda is-a ilişkisi kurulması,
+ * bir sınıfın özellikleri ve davranışlarını diğer sınıfa miras olarak geçebilmesi.
+ * Böylece yazılımın bazı parçaları tekrar kullanılabilir.
+ *
+ * Çok Biçimlilik (Polymorphism): Aynı isimdeki davranışların farklı sınıflarda farklı şekilerde davranabilemsini sağlar,
  * bu da yazılımında esnekliğini artırır.
- * 
+ *
  * Soyutlama (Abstraction): Karmaşık sistemleri basitleştirmek için ortak özellikleri belirleyerek gerçek hayatta da olduğu gibi
  * soyutlama yapılır.
  */
 
 int lastId = 0;
 
-Student student = new() {
-    FirstName = "Emir",
-    LastName = "Karameke",
-    Email = "emir@example.com",
-    Password = "Password"
-};
-student.Id = ++lastId;
+User user = new User(
+    id: ++lastId,
+    firstName: "Hacer Sema",
+    lastName: "Aktaş",
+    nickName: "Hacer.Aktas",
+    email: "hacer@example.com",
+    password: "123456"
+);
 
-Instructor instructor = new() {
-    FirstName = "Ahmet",
-    LastName = "Çetinkaya",
-    Email = "ahmet@example.com",
-    Password = "Password"
-}; 
-instructor.Id = ++lastId;
+Console.WriteLine("-------");
 
+Student student =
+    new(
+        id: ++lastId,
+        firstName: "Emir",
+        lastName: "Karameke",
+        nickName: "emir.karameke",
+        email: "emir@outlook.com",
+        password: "123456",
+        phoneNumer: "123456",
+        yas: 25
+    );
+
+Console.WriteLine("-------");
+
+Instructor instructor =
+    new(
+        id: ++lastId,
+        firstName: "Ahmet",
+        lastName: "Çetinkaya",
+        nickName: "ahmet.cetinkaya",
+        email: "ahmet@outlook.com",
+        password: "123456",
+        field: "Software"
+    );
+
+instructor.Password = "654321";
 
 #endregion
