@@ -399,17 +399,17 @@ katilimcilar.Add("said@tobetto.com");
 // Referans Tip
 // C# Nesneye Dayalı (OOP) Programlama Dili
 // Class'lar Nesneler oluşturmak için bir şablondur diyebiliriz.
-Ogrenci ogrenci = new(); // Nesne // Referans
+Student ogrenci = new(); // Nesne // Referans
 ogrenci.FirstName = "Ahmet";
 ogrenci.LastName = "Çetinkaya"; // 
 //Console.WriteLine(ogrenci.FullName);
 
-Ogrenci ogrenci1 = new() {
+Student ogrenci1 = new() {
     FirstName = "Muhammet",
     LastName = "Mutlo",
     Yas = 25
 };
-Ogrenci ogrenci2 = ogrenci1;
+Student ogrenci2 = ogrenci1;
 ogrenci2.LastName = "Mutlu";
 
 //Console.WriteLine($"{ogrenci1.FirstName} - {ogrenci1.LastName} {ogrenci1.Yas}");
@@ -490,6 +490,7 @@ Console.WriteLine(
 
 #endregion
 
+
 #region Nesneye Yönemli Programlama (OOP)
 /*
  * Sınıflar ve Nesneler: Yazılım, gerçek dünyadaki ve iş sürecindeki nesnelerin özelliklerinin tanımı ve davranışlarının tanımını
@@ -497,8 +498,9 @@ Console.WriteLine(
  * 
  * Kapsülleme (Encapsulation): özellikleri, davranışları bir arada tutmak ve bunlara olan dışardan erişimini kontrol edebilmemiz
  * 
- * Katılım (Inheritance): Sınıflar arasında bir "parent-child" ilişkisi kurulması ve bir sınıfın özellikleri ve davranışlarını 
- * diğer sınıfa miras olarak geçebilmesi. Böylece yazılımın bazı parçaları tekrar kullanılabilir. 
+ * Katılım (Inheritance): Sınıflar arasında bir "parent-child" ve aynı zamanda is-a ilişkisi kurulması, 
+ * bir sınıfın özellikleri ve davranışlarını diğer sınıfa miras olarak geçebilmesi. 
+ * Böylece yazılımın bazı parçaları tekrar kullanılabilir. 
  * 
  * Çok Biçimlilik (Polymorphism): Aynı isimdeki davranışların farklı sınıflarda farklı şekilerde davranabilemsini sağlar, 
  * bu da yazılımında esnekliğini artırır.
@@ -506,4 +508,24 @@ Console.WriteLine(
  * Soyutlama (Abstraction): Karmaşık sistemleri basitleştirmek için ortak özellikleri belirleyerek gerçek hayatta da olduğu gibi
  * soyutlama yapılır.
  */
+
+int lastId = 0;
+
+Student student = new() {
+    FirstName = "Emir",
+    LastName = "Karameke",
+    Email = "emir@example.com",
+    Password = "Password"
+};
+student.Id = ++lastId;
+
+Instructor instructor = new() {
+    FirstName = "Ahmet",
+    LastName = "Çetinkaya",
+    Email = "ahmet@example.com",
+    Password = "Password"
+}; 
+instructor.Id = ++lastId;
+
+
 #endregion
