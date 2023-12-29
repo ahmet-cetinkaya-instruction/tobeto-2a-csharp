@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Immutable;
 using System.Text;
+using System.Text.Json.Serialization;
 using ConsoleUI;
 
 #region Değişkenler
@@ -522,16 +523,21 @@ Console.WriteLine(
  * Böylece yazılımın bazı parçaları tekrar kullanılabilir.
  *
  * Çok Biçimlilik (Polymorphism): Aynı isimdeki davranışların farklı sınıflarda farklı şekilerde davranabilemsini sağlar,
- * bu da yazılımında esnekliğini artırır.
+ * bu da yazılımında esnekliğini artırır. Ek olarak Base Class'lar Child class'ların referanslarını tutabiliyorlar.
  *
  * Soyutlama (Abstraction): Karmaşık sistemleri basitleştirmek için ortak özellikleri belirleyerek gerçek hayatta da olduğu gibi
  * soyutlama yapılır.
  */
 
-int lastId = 0;
 
 User user = new User(
-    id: ++lastId,
+    firstName: "Hacer Sema",
+    lastName: "Aktaş",
+    nickName: "Hacer.Aktas",
+    email: "hacer@example.com",
+    password: "123456"
+);
+Entity user1 = new User(
     firstName: "Hacer Sema",
     lastName: "Aktaş",
     nickName: "Hacer.Aktas",
@@ -539,10 +545,14 @@ User user = new User(
     password: "123456"
 );
 
+Console.WriteLine(user.Id);
+Console.WriteLine(user1.Id);
+
 Console.WriteLine("-------");
+int lastId = 0;
 
 Student student =
-    new(
+    new Student(
         id: ++lastId,
         firstName: "Emir",
         lastName: "Karameke",
@@ -567,5 +577,12 @@ Instructor instructor =
     );
 
 instructor.Password = "654321";
+
+Console.WriteLine("-------");
+//EntityRepository entityRepository = new();
+
+//entityRepository.UpdateEntity(user);
+//entityRepository.UpdateEntity(student);
+//entityRepository.UpdateEntity(instructor);
 
 #endregion

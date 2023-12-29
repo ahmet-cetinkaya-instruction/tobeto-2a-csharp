@@ -13,6 +13,18 @@ internal class User : Entity // Tekli Miras
         set { _password = hashPassword(value); }
     }
 
+    internal User(string firstName, string lastName, string nickName, string email, string password)
+        : base() // Kurucu Metot // Constructor
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        NickName = nickName;
+        Email = email;
+        Password = password;
+
+        Console.WriteLine("Bir User Oluştu");
+    }
+
     internal User(
         int id,
         string firstName,
@@ -35,5 +47,12 @@ internal class User : Entity // Tekli Miras
     private string hashPassword(string passwordToHash)
     {
         return passwordToHash + "HASH1231@!#!@#123";
+    }
+
+    protected override int generateId()
+    {
+        //int incrementIdExample = base.generateId(); // Base class'larki
+
+        return Convert.ToInt32(DateTime.UtcNow.Nanosecond); // Temsili kod örneğidir. Tüm oluşturulacak id verisinin benzersiz olması gerekir
     }
 }
