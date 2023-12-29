@@ -1,6 +1,6 @@
 ﻿namespace ConsoleUI;
 
-internal class Entity
+internal abstract class Entity
 {
     internal int Id { get; }
     internal DateTime CreatedAt { get; } // Read-Only Property
@@ -27,7 +27,9 @@ internal class Entity
     protected virtual int generateId()
     {
         return ++EntityIdHelper.LastId;
-    }
+    } // İsteğe bağlı olarak Entity'i kalıtım alan sınıflarda override edilebilir.
+
+    //protected abstract int generateId(); // Kullanılabilmesi için Entity'i kalıtım alan Somut Class'larda Override edilmesi gerekiyor
 }
 
 internal static class EntityIdHelper

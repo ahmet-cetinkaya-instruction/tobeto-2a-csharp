@@ -1,6 +1,7 @@
 ﻿namespace ConsoleUI;
 
-internal class User : Entity // Tekli Miras
+internal class User // Somut (Concrete) Sınıf
+    : Entity // Tekli Miras
 {
     internal string FirstName { get; set; }
     internal string LastName { get; set; }

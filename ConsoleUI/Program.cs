@@ -529,6 +529,7 @@ Console.WriteLine(
  * soyutlama yapılır.
  */
 
+//Entity entity = new Entity();
 
 User user = new User(
     firstName: "Hacer Sema",
@@ -584,5 +585,10 @@ Console.WriteLine("-------");
 //entityRepository.UpdateEntity(user);
 //entityRepository.UpdateEntity(student);
 //entityRepository.UpdateEntity(instructor);
+
+IUserDal userDal = new SqlDbUserDal();  //new InMemoryUserDal();
+// Dependency Injection // IoC
+
+userDal.Add( user );
 
 #endregion
