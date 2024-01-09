@@ -590,5 +590,4 @@ IUserDal userDal = new SqlDbUserDal();  //new InMemoryUserDal();
 // Dependency Injection // IoC
 
 userDal.Add( user );
-
 #endregion
