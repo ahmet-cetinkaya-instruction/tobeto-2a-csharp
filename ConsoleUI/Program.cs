@@ -2,7 +2,12 @@
 using System.Collections.Immutable;
 using System.Text;
 using System.Text.Json.Serialization;
+using Business.Abstract;
+using Business.Concrete;
 using ConsoleUI;
+using DataAccess.Abstract;
+using DataAccess.Concrete.InMemory;
+using Entities.Concrete;
 
 #region Değişkenler
 // var yil = 2023; // Derlemede aşamasında veri tipini kendisi belirliyor
@@ -591,3 +596,12 @@ IUserDal userDal = new SqlDbUserDal();  //new InMemoryUserDal();
 
 userDal.Add( user );
 #endregion
+
+// Configuration.cs
+IBrandDal brandDal = new InMemoryBrandDal();
+IBrandService brandService = new BrandManager(brandDal);
+// Configuration.cs
+
+// > RentACar add brand BMW
+Brand brandToAdd = new Brand { Name = "BMW" };
+brandService.Add(brandToAdd);
