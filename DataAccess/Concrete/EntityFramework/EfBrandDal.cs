@@ -14,10 +14,10 @@ internal class EfBrandDal : IBrandDal
         throw new NotImplementedException();
     }
 
-    public IList<Brand> GetBrandsByNameSearch(string nameSearch)
-    {
-        throw new NotImplementedException();
-    }
+    //public IList<Brand> GetBrandsByNameSearch(string nameSearch)
+    //{
+    //    throw new NotImplementedException();
+    //}
 
     public Brand? GetById(int id)
     {

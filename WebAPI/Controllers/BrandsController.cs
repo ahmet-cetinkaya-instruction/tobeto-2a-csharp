@@ -12,7 +12,7 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class BrandsController : ControllerBase
 {
-    private readonly IBrandService _brandService;
+    private readonly IBrandService _brandService; // Field
 
     public BrandsController()
     {
@@ -32,7 +32,7 @@ public class BrandsController : ControllerBase
     public ICollection<Brand> GetList()
     {
         IList<Brand> brandList = _brandService.GetList();
-        return brandList;
+        return brandList; // JSON
     }
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
