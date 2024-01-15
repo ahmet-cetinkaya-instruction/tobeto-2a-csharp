@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.BusinessRules;
 using Business.Requests.Brand;
 using Business.Responses.Brand;
@@ -11,11 +12,13 @@ public class BrandManager : IBrandService
 {
     private readonly IBrandDal _brandDal;
     private readonly BrandBusinessRules _brandBusinessRules;
+    private readonly IMapper _mapper;
 
-    public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules)
+    public BrandManager(IBrandDal brandDal, BrandBusinessRules brandBusinessRules, IMapper mapper)
     {
         _brandDal = brandDal; //new InMemoryBrandDal(); // Başka katmanların class'ları new'lenmez. Bu yüzden dependency injection kullanıyoruz.
         _brandBusinessRules = brandBusinessRules;
+        _mapper = mapper;
     }
 
     public AddBrandResponse Add(AddBrandRequest request)
@@ -28,13 +31,12 @@ public class BrandManager : IBrandService
         // Cache
         // Transaction
 
-        //Brand addedBrand =
-        Brand brandToAdd = new(request.Name);
+        //Brand brandToAdd = new(request.Name)
+        Brand brandToAdd = _mapper.Map<Brand>(request); // Mapping
+
         _brandDal.Add(brandToAdd);
 
-        // Mapping
-
-        AddBrandResponse response = new(brandToAdd.Id, brandToAdd.Name, brandToAdd.CreatedAt);
+        AddBrandResponse response = _mapper.Map<AddBrandResponse>(brandToAdd);
         return response;
     }
 
