@@ -6,6 +6,14 @@ namespace DataAccess.Concrete.InMemory;
 
 public class InMemoryBrandDal : InMemoryEntityRepositoryBase<Brand, int>, IBrandDal
 {
+    protected override int generateId()
+    {
+        int nextId = _entities.Count == 0 
+            ? 1 
+            : _entities.Max(e => e.Id) + 1;
+        return nextId;
+    }
+
     // InMemoryEntityRepositoryBase<Brand, int> kalıtımın örnek uygulaması:
     //private readonly HashSet<Brand> _entities = new();
     //public void Add(Brand entity)

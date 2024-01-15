@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessRules;
+using Business.Requests.Brand;
+using Business.Responses.Brand;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -16,10 +18,10 @@ public class BrandManager : IBrandService
         _brandBusinessRules = brandBusinessRules;
     }
 
-    public Brand Add(Brand brand)
+    public AddBrandResponse Add(AddBrandRequest request)
     {
         // İş Kuralları
-        _brandBusinessRules.CheckIfBrandNameNotExists(brand.Name);
+        _brandBusinessRules.CheckIfBrandNameNotExists(request.Name);
 
         // Validation
         // Yetki kontrolü
@@ -27,9 +29,13 @@ public class BrandManager : IBrandService
         // Transaction
 
         //Brand addedBrand =
-        _brandDal.Add(brand);
+        Brand brandToAdd = new(request.Name);
+        _brandDal.Add(brandToAdd);
 
-        return brand;
+        // Mapping
+
+        AddBrandResponse response = new(brandToAdd.Id, brandToAdd.Name, brandToAdd.CreatedAt);
+        return response;
     }
 
     public IList<Brand> GetList()

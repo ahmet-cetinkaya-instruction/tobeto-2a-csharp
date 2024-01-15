@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
+using Business.Requests.Brand;
+using Business.Responses.Brand;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -37,9 +39,11 @@ public class BrandsController : ControllerBase
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
     [HttpPost] // POST http://localhost:5245/api/brands
-    public Brand Add(Brand addBrandRequest)
+    public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
     {
-        Brand addedBrand = _brandService.Add(addBrandRequest);
-        return addedBrand;
+        AddBrandResponse response = _brandService.Add(request);
+
+        //return response; // 200 OK
+        return CreatedAtAction(nameof(GetList), response); // 201 Created
     }
 }

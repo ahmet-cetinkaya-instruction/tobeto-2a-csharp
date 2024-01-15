@@ -2,14 +2,17 @@
 
 namespace Core.DataAccess.InMemory;
 
-public class InMemoryEntityRepositoryBase<TEntity, TEntityId>
+public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
     : IEntityRepository<TEntity, TEntityId>
     where TEntity : class, IEntity<TEntityId>, new()
 {
-    private readonly HashSet<TEntity> _entities = new();
+    protected readonly HashSet<TEntity> _entities = new();
+
+    protected abstract TEntityId generateId();
 
     public void Add(TEntity entity)
     {
+        entity.Id = generateId();
         entity.CreatedAt = DateTime.UtcNow;
         _entities.Add(entity);
     }
