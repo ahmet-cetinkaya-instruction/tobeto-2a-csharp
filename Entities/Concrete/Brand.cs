@@ -9,7 +9,6 @@ public class Brand : Entity<int>
     public Brand()
     {
     }
-
     public Brand(string name)
     {
         Name = name;
