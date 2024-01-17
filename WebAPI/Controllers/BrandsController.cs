@@ -16,10 +16,10 @@ public class BrandsController : ControllerBase
 {
     private readonly IBrandService _brandService; // Field
 
-    public BrandsController()
+    public BrandsController(IBrandService brandService)
     {
         // Her HTTP Request için yeni bir Controller nesnesi oluşturulur.
-        _brandService = ServiceRegistration.BrandService;
+        _brandService = brandService;
         // Daha sonra IoC Container yapımızı kurduğumuz Dependency Injection ile daha verimli hale getiricez.
     }
 
