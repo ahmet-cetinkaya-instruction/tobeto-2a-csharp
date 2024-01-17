@@ -25,12 +25,10 @@ public class BrandManager : IBrandService
     {
         // İş Kuralları
         _brandBusinessRules.CheckIfBrandNameNotExists(request.Name);
-
         // Validation
         // Yetki kontrolü
         // Cache
         // Transaction
-
         //Brand brandToAdd = new(request.Name)
         Brand brandToAdd = _mapper.Map<Brand>(request); // Mapping
 
