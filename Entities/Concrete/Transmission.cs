@@ -2,14 +2,14 @@
 
 namespace Entities.Concrete;
 
-public class Brand : Entity<int>
+public class Transmission : Entity<int>
 {
     public string Name { get; set; }
 
-    public Brand()
+    public Transmission()
     {
     }
-    public Brand(string name)
+    public Transmission(string name)
     {
         Name = name;
     }

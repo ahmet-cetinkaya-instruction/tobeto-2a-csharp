@@ -2,14 +2,14 @@
 
 namespace Entities.Concrete;
 
-public class Brand : Entity<int>
+public class Fuel : Entity<int>
 {
     public string Name { get; set; }
 
-    public Brand()
+    public Fuel()
     {
     }
-    public Brand(string name)
+    public Fuel(string name)
     {
         Name = name;
     }
