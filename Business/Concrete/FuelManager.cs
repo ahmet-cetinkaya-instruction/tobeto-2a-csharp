@@ -16,7 +16,7 @@ public class FuelManager : IFuelService
 
     public FuelManager(IFuelDal fuelDal, FuelBusinessRules fuelBusinessRules, IMapper mapper)
     {
-        _fuelDal = fuelDal;
+        _fuelDal = fuelDal; //new InMemoryFuelDal(); // Başka katmanların class'ları new'lenmez. Bu yüzden dependency injection kullanıyoruz.
         _fuelBusinessRules = fuelBusinessRules;
         _mapper = mapper;
     }
@@ -25,13 +25,12 @@ public class FuelManager : IFuelService
     {
         // İş Kuralları
         _fuelBusinessRules.CheckIfFuelNameNotExists(request.Name);
-
         // Validation
         // Yetki kontrolü
         // Cache
         // Transaction
-
-        Fuel fuelToAdd = _mapper.Map<Fuel>(request);
+        //Fuel fuelToAdd = new(request.Name)
+        Fuel fuelToAdd = _mapper.Map<Fuel>(request); // Mapping
 
         _fuelDal.Add(fuelToAdd);
 
@@ -39,7 +38,7 @@ public class FuelManager : IFuelService
         return response;
     }
 
-    public IList<Fuel> GetList()
+    public GetFuelListResponse GetList(GetFuelListRequest request)
     {
         // İş Kuralları
         // Validation
@@ -48,6 +47,13 @@ public class FuelManager : IFuelService
         // Transaction
 
         IList<Fuel> fuelList = _fuelDal.GetList();
-        return fuelList;
+
+        // fuelList.Items diye bir alan yok, bu yüzden mapping konfigurasyonu yapmamız gerekiyor.
+
+        // Fuel -> FuelListItemDto
+        // IList<Fuel> -> GetFuelListResponse
+
+        GetFuelListResponse response = _mapper.Map<GetFuelListResponse>(fuelList); // Mapping
+        return response;
     }
 }

@@ -8,5 +8,5 @@ public interface ITransmissionService
 {
     public AddTransmissionResponse Add(AddTransmissionRequest request);
 
-    public IList<Transmission> GetList();
+    public GetTransmissionListResponse GetList(GetTransmissionListRequest request);
 }

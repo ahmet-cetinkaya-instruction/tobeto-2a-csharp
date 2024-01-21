@@ -19,8 +19,20 @@ public static class ServiceCollectionBusinessExtension
             .AddSingleton<IBrandService, BrandManager>()
             .AddSingleton<IBrandDal, InMemoryBrandDal>()
             .AddSingleton<BrandBusinessRules>(); // Fluent
+
+        services
+            .AddSingleton<IFuelService, FuelManager>()
+            .AddSingleton<IFuelDal, InMemoryFuelDal>()
+            .AddSingleton<FuelBusinessRules>(); // Fluent
+
+        services
+            .AddSingleton<ITransmissionService, TransmissionManager>()
+            .AddSingleton<ITransmissionDal, InMemoryTransmissionDal>()
+            .AddSingleton<TransmissionBusinessRules>(); // Fluent
         // Singleton: Tek bir nesne oluşturur ve herkese onu verir.
         // Ek ödev diğer yöntemleri araştırınız.
+
+
 
         services.AddAutoMapper(Assembly.GetExecutingAssembly()); // AutoMapper.Extensions.Microsoft.DependencyInjection NuGet Paketi
         // Reflection yöntemiyle Profile class'ını kalıtım alan tüm class'ları bulur ve AutoMapper'a ekler.
