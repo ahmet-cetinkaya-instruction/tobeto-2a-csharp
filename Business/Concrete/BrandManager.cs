@@ -25,12 +25,10 @@ public class BrandManager : IBrandService
     {
         // İş Kuralları
         _brandBusinessRules.CheckIfBrandNameNotExists(request.Name);
-
         // Validation
         // Yetki kontrolü
         // Cache
         // Transaction
-
         //Brand brandToAdd = new(request.Name)
         Brand brandToAdd = _mapper.Map<Brand>(request); // Mapping
 
@@ -40,7 +38,7 @@ public class BrandManager : IBrandService
         return response;
     }
 
-    public IList<Brand> GetList()
+    public GetBrandListResponse GetList(GetBrandListRequest request)
     {
         // İş Kuralları
         // Validation
@@ -49,6 +47,13 @@ public class BrandManager : IBrandService
         // Transaction
 
         IList<Brand> brandList = _brandDal.GetList();
-        return brandList;
+
+        // brandList.Items diye bir alan yok, bu yüzden mapping konfigurasyonu yapmamız gerekiyor.
+
+        // Brand -> BrandListItemDto
+        // IList<Brand> -> GetBrandListResponse
+
+        GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList); // Mapping
+        return response;
     }
 }

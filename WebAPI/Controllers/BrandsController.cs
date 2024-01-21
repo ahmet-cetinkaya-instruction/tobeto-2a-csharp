@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Business;
+using Business.Abstract;
 using Business.Concrete;
 using Business.Requests.Brand;
 using Business.Responses.Brand;
@@ -7,6 +8,7 @@ using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.NetworkInformation;
 
 namespace WebAPI.Controllers;
 
@@ -16,10 +18,10 @@ public class BrandsController : ControllerBase
 {
     private readonly IBrandService _brandService; // Field
 
-    public BrandsController()
+    public BrandsController(IBrandService brandService)
     {
         // Her HTTP Request için yeni bir Controller nesnesi oluşturulur.
-        _brandService = ServiceRegistration.BrandService;
+        _brandService = brandService;
         // Daha sonra IoC Container yapımızı kurduğumuz Dependency Injection ile daha verimli hale getiricez.
     }
 
@@ -31,19 +33,35 @@ public class BrandsController : ControllerBase
     //}
 
     [HttpGet] // GET http://localhost:5245/api/brands
-    public ICollection<Brand> GetList()
+    public GetBrandListResponse GetList([FromQuery] GetBrandListRequest request) // Referans tipleri varsayılan olarak request body'den alır.
     {
-        IList<Brand> brandList = _brandService.GetList();
-        return brandList; // JSON
+        GetBrandListResponse response = _brandService.GetList(request);
+        return response; // JSON
     }
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
     [HttpPost] // POST http://localhost:5245/api/brands
     public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
     {
-        AddBrandResponse response = _brandService.Add(request);
+        try
+        {
+            AddBrandResponse response = _brandService.Add(request);
 
-        //return response; // 200 OK
-        return CreatedAtAction(nameof(GetList), response); // 201 Created
+            //return response; // 200 OK
+            return CreatedAtAction(nameof(GetList), response); // 201 Created
+        }
+        catch (Core.CrossCuttingConcerns.Exceptions.BusinessException exception)
+        {
+            return BadRequest(
+                new Core.CrossCuttingConcerns.Exceptions.BusinessProblemDetails()
+                {
+                    Title = "Business Exception",
+                    Status = StatusCodes.Status400BadRequest,
+                    Detail = exception.Message,
+                    Instance = HttpContext.Request.Path
+                }
+            );
+            // 400 Bad Request
+        }
     }
 }
