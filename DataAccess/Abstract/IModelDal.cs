@@ -2,6 +2,7 @@
 using Entities.Concrete;
 
 namespace DataAccess.Abstract;
+
 public interface IModelDal : IEntityRepository<Model, int>
 {
     // IEntityRepository<Model, int> kalıtımının örnek canlandırması:
