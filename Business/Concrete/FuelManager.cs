@@ -56,4 +56,19 @@ public class FuelManager : IFuelService
         GetFuelListResponse response = _mapper.Map<GetFuelListResponse>(fuelList); // Mapping
         return response;
     }
+
+    public Fuel FindByID(int id)
+    {
+
+        IList<Fuel> fuelList = _fuelDal.GetList();
+        foreach (Fuel fuel in fuelList)
+        {
+            if (fuel.Id == id)
+            {
+                return fuel;
+            }
+        }
+
+        throw new BusinessException("Fuel is not exists. " + id);
+    }
 }

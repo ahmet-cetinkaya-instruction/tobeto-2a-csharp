@@ -56,4 +56,19 @@ public class TransmissionManager : ITransmissionService
         GetTransmissionListResponse response = _mapper.Map<GetTransmissionListResponse>(transmissionList); // Mapping
         return response;
     }
+
+    public Transmission FindByID(int id)
+    {
+
+        IList<Transmission> transmissionList = _transmissionDal.GetList();
+        foreach (Transmission transmission in transmissionList)
+        {
+            if (transmission.Id == id)
+            {
+                return transmission;
+            }
+        }
+
+        throw new BusinessException("Transmission is not exists. " + id);
+    }
 }

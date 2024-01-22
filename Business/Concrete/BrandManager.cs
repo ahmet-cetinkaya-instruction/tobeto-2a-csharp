@@ -56,4 +56,19 @@ public class BrandManager : IBrandService
         GetBrandListResponse response = _mapper.Map<GetBrandListResponse>(brandList); // Mapping
         return response;
     }
+
+    public Brand FindByID(int id)
+    {
+
+        IList<Brand> brandList = _brandDal.GetList();
+        foreach (Brand brand in brandList)
+        {
+            if(brand.Id == id)
+            {
+                return brand;
+            }
+        }
+
+        throw new BusinessException("Brand is not exists. " + id);
+    }
 }
