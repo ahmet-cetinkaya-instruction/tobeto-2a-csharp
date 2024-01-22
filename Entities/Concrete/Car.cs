@@ -8,7 +8,7 @@ public class Car : Entity<int>
     public int ModelId { get; set; }
 
 
-    public string CarState { get; set; }
+    public bool CarState { get; set; }
     public double Kilometer { get; set; }
     public short ModelYear { get; set; }
     public string Plate { get; set; }

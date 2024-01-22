@@ -9,4 +9,5 @@ public interface ITransmissionService
     public AddTransmissionResponse Add(AddTransmissionRequest request);
 
     public GetTransmissionListResponse GetList(GetTransmissionListRequest request);
+    public Transmission FindByID(int id);
 }

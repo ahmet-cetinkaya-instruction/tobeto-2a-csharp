@@ -8,12 +8,13 @@ public class AddCarRequest
     public int ModelId { get; set; }
 
 
-    public string CarState { get; set; }
+    public bool CarState { get; set; }
     public double Kilometer { get; set; }
     public short ModelYear { get; set; }
     public string Plate { get; set; }
 
-    public AddCarRequest(int id, int colodId, int modelId, string carState, double kilometer, short modelyear, string plate, DateTime createdAt)
+
+    public AddCarRequest(int id, int colorId, int modelId, bool carState, double kilometer, short modelYear, string plate, DateTime createdAt)
     {
         ColorId = colorId;
         ModelId = modelId;

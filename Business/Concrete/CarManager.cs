@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.BusinessRules;
 using Business.Requests.Car;
 using Business.Responses.Car;
+using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
@@ -15,21 +16,22 @@ public class CarManager : ICarService
     private readonly CarBusinessRules _carBusinessRules;
     private readonly IMapper _mapper;
 
-    private ModelManager _modelManager = new ModelManager();
+    private readonly IModelService _modelService; // Field
 
 
-    public CarManager(ICarDal carDal, CarBusinessRules carBusinessRules, IMapper mapper)
+    public CarManager(ICarDal carDal, CarBusinessRules carBusinessRules, IMapper mapper, IModelService modelService)
     {
         _carDal = carDal; //new InMemoryCarDal(); // Baþka katmanlarýn class'larý new'lenmez. Bu yüzden dependency injection kullanýyoruz.
         _carBusinessRules = carBusinessRules;
         _mapper = mapper;
+        _modelService = modelService;
     }
 
     public AddCarResponse Add(AddCarRequest request)
     {
         // Ýþ Kurallarý
-        //_carBusinessRules.CheckIfCarNameNotExists(request.Name);
-        Model model = _modelManager.FindByID(request.BrandId);
+        _carBusinessRules.CheckIfCarNameNotExists(request.ModelYear);
+        Model model = _modelService.FindByID(request.ModelId);
 
         // Validation
         // Yetki kontrolü
@@ -63,5 +65,20 @@ public class CarManager : ICarService
 
         GetCarListResponse response = _mapper.Map<GetCarListResponse>(carList); // Mapping
         return response;
+    }
+
+    public Car FindByID(int id)
+    {
+
+        IList<Car> carList = _carDal.GetList();
+        foreach (Car car in carList)
+        {
+            if (car.Id == id)
+            {
+                return car;
+            }
+        }
+
+        throw new BusinessException("Car is not exists. " + id);
     }
 }

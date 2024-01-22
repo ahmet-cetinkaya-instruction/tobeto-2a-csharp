@@ -1,3 +1,5 @@
+using Business.Dtos.Model;
+
 namespace Business.Dtos.Car;
 
 public class CarListItemDto // Dto: Data Transfer Object
@@ -7,10 +9,10 @@ public class CarListItemDto // Dto: Data Transfer Object
     public int ModelId { get; set; }
 
 
-    public string CarState { get; set; }
+    public bool CarState { get; set; }
     public double Kilometer { get; set; }
     public short ModelYear { get; set; }
     public string Plate { get; set; }
 
-    public Model? Model { get; set; } = null;
+    public ModelListItemDto? Model { get; set; } = null;
 }

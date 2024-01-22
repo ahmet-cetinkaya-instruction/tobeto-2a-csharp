@@ -1,4 +1,6 @@
-﻿namespace Business.Responses.Car;
+﻿using Business.Dtos.Model;
+
+namespace Business.Responses.Car;
 
 public class AddCarResponse
 { // Dto
@@ -7,15 +9,15 @@ public class AddCarResponse
     public int ModelId { get; set; }
 
 
-    public string CarState { get; set; }
+    public bool CarState { get; set; }
     public double Kilometer { get; set; }
     public short ModelYear { get; set; }
     public string Plate { get; set; }
     public DateTime CreatedAt { get; set; }
 
-    public Model? Model { get; set; } = null;
+    public ModelListItemDto? Model { get; set; } = null;
 
-    public AddCarResponse(int id, int colodId, int modelId, string carState, double kilometer, short modelyear, string plate, Model model, DateTime createdAt)
+    public AddCarResponse(int id, int colorId, int modelId, bool carState, double kilometer, short modelYear, string plate, ModelListItemDto model, DateTime createdAt)
     {
         Id = id;
         ColorId = colorId;

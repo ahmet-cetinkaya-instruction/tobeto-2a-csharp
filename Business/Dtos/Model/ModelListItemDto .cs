@@ -1,4 +1,8 @@
-﻿namespace Business.Dtos.Model;
+﻿using Business.Dtos.Brand;
+using Business.Dtos.Fuel;
+using Business.Dtos.Transmission;
+
+namespace Business.Dtos.Model;
 
 public class ModelListItemDto // Dto: Data Transfer Object
 {
@@ -10,9 +14,11 @@ public class ModelListItemDto // Dto: Data Transfer Object
 
     public string Name { get; set; }
     public short Year { get; set; }
+    public double DailyPrice { get; set; }
 
-    public Brand? Brand { get; set; } = null;
-    public Transmission? Transmission { get; set; } = null;
-    public Fuel? Fuel { get; set; } = null;
+
+    public BrandListItemDto? Brand { get; set; } = null;
+    public TransmissionListItemDto? Transmission { get; set; } = null;
+    public FuelListItemDto? Fuel { get; set; } = null;
 
 }

@@ -1,4 +1,8 @@
-﻿namespace Business.Responses.Model;
+﻿using Business.Dtos.Brand;
+using Business.Dtos.Fuel;
+using Business.Dtos.Transmission;
+
+namespace Business.Responses.Model;
 
 public class AddModelResponse
 { // Dto
@@ -10,13 +14,15 @@ public class AddModelResponse
 
     public string Name { get; set; }
     public short Year { get; set; }
+    public double DailyPrice { get; set; }
 
-    public Brand? Brand { get; set; } = null;
-    public Transmission? Transmission { get; set; } = null;
-    public Fuel? Fuel { get; set; } = null;
+
+    public BrandListItemDto? Brand { get; set; } = null;
+    public TransmissionListItemDto? Transmission { get; set; } = null;
+    public FuelListItemDto? Fuel { get; set; } = null;
     public DateTime CreatedAt { get; set; }
 
-    public AddModelResponse(int id, int brandId, int fuelId, int transmissionId, string name, short year, Brand brand, Transmission transmission, Fuel fuel, DateTime createdAt)
+    public AddModelResponse(int id, int brandId, int fuelId, int transmissionId, string name, short year, double dailyPrice, BrandListItemDto brand, TransmissionListItemDto transmission, FuelListItemDto fuel, DateTime createdAt)
     {
         Id = id;
         BrandId = brandId;
@@ -25,6 +31,7 @@ public class AddModelResponse
 
         Name = name;
         Year = year;
+        DailyPrice = dailyPrice;
 
         Brand = brand;
         Transmission = transmission;

@@ -50,7 +50,7 @@ public class ModelsController : ControllerBase
             //return response; // 200 OK
             return CreatedAtAction(nameof(GetList), response); // 201 Created
         }
-        catch (Core.CrossCuttingConcerns.Exceptions.BusinessException exception)s
+        catch (Core.CrossCuttingConcerns.Exceptions.BusinessException exception)
         {
             return BadRequest(
                 new Core.CrossCuttingConcerns.Exceptions.BusinessProblemDetails()

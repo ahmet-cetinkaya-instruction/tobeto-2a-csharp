@@ -11,6 +11,7 @@ public class Model : Entity<int>
 
     public string Name { get; set; }
     public short Year { get; set; }
+    public double DailyPrice { get; set; }
 
     public Brand? Brand { get; set; } = null;
     public Transmission? Transmission { get; set; } = null;

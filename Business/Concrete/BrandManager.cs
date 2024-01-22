@@ -3,6 +3,7 @@ using Business.Abstract;
 using Business.BusinessRules;
 using Business.Requests.Brand;
 using Business.Responses.Brand;
+using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
