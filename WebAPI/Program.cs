@@ -14,7 +14,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseGlobalExceptionHandling();
+//if (app.Environment.IsProduction())
+    app.UseGlobalExceptionHandling();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

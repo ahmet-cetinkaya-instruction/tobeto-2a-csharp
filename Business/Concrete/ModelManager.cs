@@ -1,10 +1,15 @@
 ﻿using System.Reflection;
 using AutoMapper;
 using Business.Abstract;
+using Business.BusinessRules;
+using Business.Profiles.Validation.FluentValidation.Model;
 using Business.Requests.Model;
 using Business.Responses.Model;
+using Core.CrossCuttingConcerns.Validation.FluentValidation;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace Business.Concrete;
 
@@ -24,17 +29,37 @@ public class ModelManager : IModelService
     public AddModelResponse Add(AddModelRequest request)
     {
         // validation
+        //if(request.BrandId == 0)
+        //    throw new Exception("BrandId cannot be 0.");
+        //if (request.FuelId == 0)
+        //    throw new Exception("FuelId cannot be 0.");
+        //if (request.TransmissionId == 0)
+        //    throw new Exception("TransmissionId cannot be 0.");
+        //if (string.IsNullOrWhiteSpace(request.Name))
+        //    throw new Exception("Name cannot be empty.");
+        //if (request.Name.Length < 2)
+        //    throw new Exception("Name must be at least 2 characters long.");
+        //if (request.Name.Length > 50)
+        //    throw new Exception("Name cannot be longer than 50 characters.");
+        //if (request.DailyPrice <= 0)
+        //    throw new Exception("Daily price must be greater than 0.");
+        //if(request.Year <=  0)
+        //    throw new Exception("Year must be greater than 0.");
+        ////TODO: bunlari fluent validation ile buradan ayrıştır.
+
         // fluent validation
-        if (request.Name.Length < 2)
-            throw new Exception("Name must be at least 2 characters long.");
-        if (request.Name.Length > 50)
-            throw new Exception("Name cannot be longer than 50 characters.");
-        if (request.DailyPrice <= 0)
-            throw new Exception("Daily price must be greater than 0.");
-        //TODO: bunlari fluent validation ile buradan ayrıştır.
+        ValidationTool.Validate(new AddModelRequestValidator(), request);
+
+        //ValidationResult result = validator.Validate(request);
+        //if(!result.IsValid)
+        //{
+        //    throw new ValidationException(result.Errors);
+        //}
+
 
         // business rules
         _modelBusinessRules.CheckIfModelNameExists(request.Name);
+        _modelBusinessRules.CheckIfModelYearShouldBeInLast20Years(request.Year);
 
         // mapping
         var modelToAdd = _mapper.Map<Model>(request);
@@ -122,6 +147,7 @@ public class ModelManager : IModelService
     {
         Model? modelToUpdate = _modelDal.Get(predicate: model => model.Id == request.Id); // 0x123123
         _modelBusinessRules.CheckIfModelExists(modelToUpdate);
+        _modelBusinessRules.CheckIfModelYearShouldBeInLast20Years(request.Year);
 
         //modelToUpdate = _mapper.Map<Model>(request); // 0x333123
         /* Bunu kullanmayacağız çünkü bizim için yeni bir nesne (referans) oluşturuyor.
