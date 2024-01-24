@@ -52,7 +52,29 @@ public class ExceptionMiddleware
         if (exception is BusinessException businessException)
             return createBusinessProblemDetailsResponse(httpContext, businessException);
 
+        if (exception is NotFoundException notFoundException)
+            return createNotFoundProblemDetailsResponse(httpContext, notFoundException);
+
         return createInternalProblemDetailsResponse(httpContext, exception);
+    }
+
+    private Task createNotFoundProblemDetailsResponse(
+        HttpContext httpContext,
+        NotFoundException notFoundException
+    )
+    {
+        httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
+
+        NotFoundProblemDetails notFoundProblemDetails =
+            new()
+            {
+                Title = "Not Found",
+                Type = "https://doc.rentacar.com/not-found",
+                Status = StatusCodes.Status404NotFound,
+                Detail = notFoundException.Message,
+                Instance = httpContext.Request.Path
+            };
+        return httpContext.Response.WriteAsync(notFoundProblemDetails.ToString());
     }
 
     private Task createBusinessProblemDetailsResponse(

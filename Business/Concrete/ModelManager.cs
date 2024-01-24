@@ -29,7 +29,7 @@ public class ModelManager : IModelService
             throw new Exception("Name must be at least 2 characters long.");
         if (request.Name.Length > 50)
             throw new Exception("Name cannot be longer than 50 characters.");
-        if (request.DailyPrice > 0)
+        if (request.DailyPrice <= 0)
             throw new Exception("Daily price must be greater than 0.");
         //TODO: bunlari fluent validation ile buradan ayrıştır.
 
@@ -40,21 +40,33 @@ public class ModelManager : IModelService
         var modelToAdd = _mapper.Map<Model>(request);
 
         // data operations
-        Model updatedModel = _modelDal.Add(modelToAdd);
+        Model addedModel = _modelDal.Add(modelToAdd);
 
         // mapping & response
-        var response = _mapper.Map<AddModelResponse>(updatedModel);
+        var response = _mapper.Map<AddModelResponse>(addedModel);
         return response;
     }
 
     public DeleteModelResponse Delete(DeleteModelRequest request)
     {
-        throw new NotImplementedException();
+        Model? modelToDelete = _modelDal.Get(predicate: model => model.Id == request.Id); // 0x123123
+        _modelBusinessRules.CheckIfModelExists(modelToDelete); // 0x123123
+
+        Model deletedModel = _modelDal.Delete(modelToDelete!); // 0x123123
+
+        var response = _mapper.Map<DeleteModelResponse>(
+            deletedModel // 0x123123
+        );
+        return response;
     }
 
     public GetModelByIdResponse GetById(GetModelByIdRequest request)
     {
-        throw new NotImplementedException();
+        Model? model = _modelDal.Get(predicate: model => model.Id == request.Id);
+        _modelBusinessRules.CheckIfModelExists(model);
+
+        var response = _mapper.Map<GetModelByIdResponse>(model);
+        return response;
     }
 
     public GetModelListResponse GetList(GetModelListRequest request)
@@ -108,6 +120,19 @@ public class ModelManager : IModelService
 
     public UpdateModelResponse Update(UpdateModelRequest request)
     {
-        throw new NotImplementedException();
+        Model? modelToUpdate = _modelDal.Get(predicate: model => model.Id == request.Id); // 0x123123
+        _modelBusinessRules.CheckIfModelExists(modelToUpdate);
+
+        //modelToUpdate = _mapper.Map<Model>(request); // 0x333123
+        /* Bunu kullanmayacağız çünkü bizim için yeni bir nesne (referans) oluşturuyor.
+        Ve ayrıca entity sınıfında olup da request sınıfında olmayan alanlar (örn. CreatedAt vb.) varsayılan değerler alacak,
+        böylece yanlış bir veri güncellemesi yapmış oluruz. */
+        modelToUpdate = _mapper.Map(request, modelToUpdate); // 0x123123
+        Model updatedModel = _modelDal.Update(modelToUpdate!); // 0x123123
+
+        var response = _mapper.Map<UpdateModelResponse>(
+            updatedModel // 0x123123
+        );
+        return response;
     }
 }

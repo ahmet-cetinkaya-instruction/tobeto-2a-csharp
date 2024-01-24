@@ -18,9 +18,12 @@ public abstract class InMemoryEntityRepositoryBase<TEntity, TEntityId>
         return entity;
     }
 
-    public TEntity Delete(TEntity entity)
+    public TEntity Delete(TEntity entity, bool isSoftDelete = true)
     {
-        entity.DeletedAt = DateTime.UtcNow;
+        entity.DeletedAt = DateTime.UtcNow; // Soft delete
+        if (!isSoftDelete)
+            Entities.Remove(entity); // Hard delete
+
         return entity;
     }
 
