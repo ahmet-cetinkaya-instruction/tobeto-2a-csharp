@@ -2,7 +2,7 @@
 
 namespace Entities.Concrete;
 
-public class Fuel : Entity<int>
+/*public class Fuel : Entity<int>
 {
     public string Name { get; set; }
 
@@ -13,4 +13,8 @@ public class Fuel : Entity<int>
     {
         Name = name;
     }
+}*/
+public class Fuel : Entity<int>
+{
+    public string Name { get; set; }
 }

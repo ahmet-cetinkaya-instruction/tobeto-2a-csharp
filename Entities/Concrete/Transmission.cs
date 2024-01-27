@@ -2,7 +2,7 @@
 
 namespace Entities.Concrete;
 
-public class Transmission : Entity<int>
+/*public class Transmission : Entity<int>
 {
     public string Name { get; set; }
 
@@ -13,4 +13,9 @@ public class Transmission : Entity<int>
     {
         Name = name;
     }
+}*/
+
+public class Transmission : Entity<int>
+{
+    public string Name { get; set; }
 }
