@@ -14,10 +14,15 @@ public class CustomersBusinessRules
 
     public void CheckIfCustomersNameNotExists(string customersName)
     {
-        bool isExists = _customersDal.Get(customers => customers.Name == customersName) is not null;
+        bool isExists = _customersDal.Get(customers => customers.name == customersName) is not null;
         if (isExists)
         {
             throw new BusinessException("Customers already exists.");
         }
+    }
+
+    internal void CheckIfCustomersNameNotExists(int userId)
+    {
+        throw new NotImplementedException();
     }
 }

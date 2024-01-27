@@ -1,8 +1,6 @@
 ﻿using Core.Entities;
 using System;
 
-public class Class1
-{
     public class Users : Entity<int>
     {
         public string FirstName { get; set; }
@@ -25,4 +23,3 @@ public class Class1
             Password = password;
         }
     }
-}

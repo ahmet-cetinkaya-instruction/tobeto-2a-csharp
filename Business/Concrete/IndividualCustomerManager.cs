@@ -24,7 +24,7 @@ public class IndividualCustomerManager : IIndividualCustomerService
 
     public AddIndividualCustomerResponse Add(AddIndividualCustomerRequest request)
     {
-        _ındividualcustomerBusinessRules.CheckIfIndividualCustomerNameNotExists(request.Name);
+        _ındividualcustomerBusinessRules.CheckIfIndividualCustomerNameNotExists(request.FirstName);
 
         IndividualCustomer ındividualcustomerToAdd = _mapper.Map<IndividualCustomer>(request); // Mapping
 

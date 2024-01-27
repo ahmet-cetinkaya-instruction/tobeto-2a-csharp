@@ -14,7 +14,7 @@ public class IndividualCustomerBusinessRules
 
     public void CheckIfIndividualCustomerNameNotExists(string ındividualcustomerName)
     {
-        bool isExists = _ındividualcustomerDal.Get(ındividualcustomer => ındividualcustomer.Name == ındividualcustomerName) is not null;
+        bool isExists = _ındividualcustomerDal.Get(ındividualcustomer => ındividualcustomer.FirstName == ındividualcustomerName) is not null;
         if (isExists)
         {
             throw new BusinessException("IndividualCustomer already exists.");

@@ -1,8 +1,5 @@
 ﻿using Core.Entities;
 using System;
-
-public class Class1
-{
     public class IndividualCustomer : Entity<int>
     {
         public string FirstName { get; set; }
@@ -14,7 +11,7 @@ public class Class1
         public IndividualCustomer(
             string firstName,
             string lastName,
-            string nationalIdentity,
+            string nationalIdentity
         )
         {
             FirstName = firstName;
@@ -22,4 +19,3 @@ public class Class1
             NationalIdentity = nationalIdentity;
         }
     }
-}

@@ -5,6 +5,7 @@ using Business.Requests.Customers;
 using Business.Responses.Customers;
 using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
 namespace Business.Concrete;
@@ -24,7 +25,7 @@ public class CustomersManager : ICustomersService
 
     public AddCustomersResponse Add(AddCustomersRequest request)
     {
-        _customersBusinessRules.CheckIfCustomersNameNotExists(request.Name);
+        _customersBusinessRules.CheckIfCustomersNameNotExists(request.UserId);
 
         Customers customersToAdd = _mapper.Map<Customers>(request); // Mapping
 

@@ -1,6 +1,4 @@
-﻿using Business.Dtos.Model;
-
-namespace Business.Responses.Car;
+﻿namespace Business.Responses.Car;
 
 public class AddCarResponse
 { // Dto

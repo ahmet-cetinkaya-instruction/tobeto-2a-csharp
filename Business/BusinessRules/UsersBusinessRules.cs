@@ -14,7 +14,7 @@ public class UsersBusinessRules
 
     public void CheckIfUsersNameNotExists(string usersName)
     {
-        bool isExists = _usersDal.Get(users => users.Name == usersName) is not null;
+        bool isExists = _usersDal.Get(users => users.FirstName == usersName) is not null;
         if (isExists)
         {
             throw new BusinessException("Users already exists.");
