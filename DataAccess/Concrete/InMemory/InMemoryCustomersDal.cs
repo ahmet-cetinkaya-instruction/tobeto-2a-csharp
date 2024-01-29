@@ -7,6 +7,11 @@ namespace DataAccess.Concrete.InMemory;
 
 public class InMemoryCustomersDal : InMemoryEntityRepositoryBase<Customers, int>, ICustomersDal
 {
+    public void Add(EntityFramework.Customers customersToAdd)
+    {
+        throw new NotImplementedException();
+    }
+
     protected override int generateId()
     {
         int nextId = Entities.Count == 0

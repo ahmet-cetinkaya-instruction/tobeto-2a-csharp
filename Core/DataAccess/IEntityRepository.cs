@@ -23,4 +23,5 @@ public interface IEntityRepository<TEntity, TEntityId> // Repository Design Patt
     public TEntity Add(TEntity entity);
     public TEntity Update(TEntity entity);
     public TEntity Delete(TEntity entity, bool isSoftDelete = true);
+    void Add(global::Customers customersToAdd);
 }

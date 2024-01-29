@@ -1,14 +1,8 @@
 ﻿using Business;
 using Business.Abstract;
-using Business.Concrete;
 using Business.Requests.IndividualCustomer;
 using Business.Responses.IndividualCustomer;
-using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
-using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.NetworkInformation;
 
 namespace WebAPI.Controllers;
 

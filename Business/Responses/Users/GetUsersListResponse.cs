@@ -1,18 +1,20 @@
 ﻿using Business.Dtos.Users;
 
-namespace Business;
-
-public class GetUsersListResponse
+namespace Business.Responses.Users
 {
-    public ICollection<UsersListItemDto> Items { get; set; }
 
-    public GetUsersListResponse()
+    public class GetUsersListResponse
     {
-        Items = Array.Empty<UsersListItemDto>();
-    }
+        public ICollection<UsersListItemDto> Items { get; set; }
 
-    public GetUsersListResponse(ICollection<UsersListItemDto> items)
-    {
-        Items = items;
+        public GetUsersListResponse()
+        {
+            Items = Array.Empty<UsersListItemDto>();
+        }
+
+        public GetUsersListResponse(ICollection<UsersListItemDto> items)
+        {
+            Items = items;
+        }
     }
 }

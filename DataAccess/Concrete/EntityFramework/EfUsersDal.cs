@@ -1,6 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
-using static Class1;
+
 
 namespace DataAccess.Concrete.EntityFramework;
 

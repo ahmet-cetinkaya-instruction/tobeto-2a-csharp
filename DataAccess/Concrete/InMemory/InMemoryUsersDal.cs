@@ -1,7 +1,7 @@
 ﻿using Core.DataAccess.InMemory;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using static Class1;
+
 
 namespace DataAccess.Concrete.InMemory;
 

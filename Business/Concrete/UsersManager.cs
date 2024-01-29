@@ -6,7 +6,6 @@ using Business.Responses.Users;
 using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using static Class1;
 
 namespace Business.Concrete;
 

@@ -1,19 +1,17 @@
 ﻿using Core.Entities;
 using System;
 
-public class Class1
+
+    public class Customers : Entity<int>
 {
-    public class Users : Entity<int>
+    public int CustomerId { get; set; }
+
+    public Customers() { }
+
+    public Customers(
+        int customerId
+    )
     {
-        public int UserId { get; set; }
-
-        public Users() { }
-
-        public Users(
-            int userId
-        )
-        {
-            UserId = userId;
-        }
+        CustomerId = customerId;
     }
 }
