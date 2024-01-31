@@ -3,6 +3,6 @@ using Entities.Concrete;
 
 namespace DataAccess.Abstract;
 
-public interface IUsersDal : IEntityRepository<Users, int>
+public interface ICorporateCustomerDal : IEntityRepository<CorporateCustomer, int>
 {
 }

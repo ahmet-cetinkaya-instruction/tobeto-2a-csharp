@@ -2,7 +2,6 @@
 using Business.Responses.Users;
 using Entities.Concrete;
 
-
 namespace Business.Abstract;
 
 public interface IUsersService

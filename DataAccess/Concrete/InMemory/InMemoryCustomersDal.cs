@@ -7,7 +7,7 @@ namespace DataAccess.Concrete.InMemory;
 
 public class InMemoryCustomersDal : InMemoryEntityRepositoryBase<Customers, int>, ICustomersDal
 {
-    public void Add(EntityFramework.Customers customersToAdd)
+    public void Add(Customers customersToAdd)
     {
         throw new NotImplementedException();
     }
@@ -20,8 +20,8 @@ public class InMemoryCustomersDal : InMemoryEntityRepositoryBase<Customers, int>
         return nextId;
     }
 
-    void ICustomersDal.Add(Customers customersToAdd)
+   /* protected Customers Add(Customers customersToAdd)
     {
         throw new NotImplementedException();
-    }
+    }*/
 }

@@ -1,6 +1,5 @@
 ﻿using Business.Requests.Customers;
 using Business.Responses.Customers;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
 namespace Business.Abstract;

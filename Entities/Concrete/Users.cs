@@ -7,7 +7,7 @@ namespace Entities.Concrete;
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EMail { get; set; }
-        public int Password { get; set; }
+        public string Password { get; set; }
 
         public Users() { }
 
@@ -15,7 +15,7 @@ namespace Entities.Concrete;
             string firstName,
             string lastName,
             string eMail,
-            int password
+            string password
         )
         {
             FirstName = firstName;
@@ -23,4 +23,6 @@ namespace Entities.Concrete;
             EMail = eMail;
             Password = password;
         }
-    }
+
+    public Customers? Customers { get; set; } = null;
+}

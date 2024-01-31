@@ -1,6 +1,8 @@
-﻿namespace Business.Dtos.IndividualCustomer;
+﻿using Business.Dtos.Customers;
 
-public class IndividualCustomerListItemDto
+namespace Business.Dtos.IndividualCustomer;
+
+public class IndividualCustomerListItemDto : CustomersListItemDto
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

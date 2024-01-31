@@ -58,7 +58,7 @@ public class ModelsController : ControllerBase
     }
 
     [HttpDelete("{Id}")] // DELETE http://localhost:5245/api/models/1
-    public DeleteModelResponse Delete([FromRoute] DeleteModelRequest request)
+    public DeleteModelResponse Delete([FromRoute] DeleteModelRequest request) //id burada path variable
     {
         DeleteModelResponse response = _modelService.Delete(request);
         return response;

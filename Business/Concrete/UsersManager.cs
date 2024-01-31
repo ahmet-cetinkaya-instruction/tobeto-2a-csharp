@@ -11,9 +11,9 @@ namespace Business.Concrete;
 
 public class UsersManager : IUsersService
 {
-    private readonly IUsersDal _usersDal;
     private readonly UsersBusinessRules _usersBusinessRules;
     private readonly IMapper _mapper;
+    private readonly IUsersDal _usersDal;
 
     public UsersManager(IUsersDal usersDal, UsersBusinessRules usersBusinessRules, IMapper mapper)
     {

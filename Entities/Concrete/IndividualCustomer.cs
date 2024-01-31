@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concrete;
 using System;
     public class IndividualCustomer : Entity<int>
     {
@@ -18,4 +19,6 @@ using System;
             LastName = lastName;
             NationalIdentity = nationalIdentity;
         }
-    }
+    public Customers? Customers { get; set; } = null;
+
+}

@@ -14,11 +14,11 @@ namespace WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class CustomerssController : ControllerBase
+public class CustomersController : ControllerBase
 {
     private readonly ICustomersService _customersService; // Field
 
-    public CustomerssController(ICustomersService customersService)
+    public CustomersController(ICustomersService customersService)
     {
         _customersService = customersService;
     }

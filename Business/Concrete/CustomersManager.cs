@@ -5,7 +5,6 @@ using Business.Requests.Customers;
 using Business.Responses.Customers;
 using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
 namespace Business.Concrete;

@@ -11,5 +11,5 @@ public interface IModelService
     public GetModelByIdResponse GetById(GetModelByIdRequest request);
     public UpdateModelResponse Update(UpdateModelRequest request);
     public DeleteModelResponse Delete(DeleteModelRequest request);
-    //public Model FindByID(int id);
+    public Model FindByID(int id);
 }

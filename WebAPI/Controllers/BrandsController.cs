@@ -2,7 +2,9 @@
 using Business.Abstract;
 using Business.Concrete;
 using Business.Requests.Brand;
+using Business.Requests.Model;
 using Business.Responses.Brand;
+using Business.Responses.Model;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -39,6 +41,13 @@ public class BrandsController : ControllerBase
         return response; // JSON
     }
 
+    [HttpGet("{Id}")] // GET http://localhost:5245/api/brands/1
+    public GetBrandByIdResponse GetById([FromRoute] GetBrandByIdRequest request)
+    {
+        GetBrandByIdResponse response = _brandService.GetById(request);
+        return response;
+    }
+
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
     [HttpPost] // POST http://localhost:5245/api/brands
     public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
@@ -63,5 +72,25 @@ public class BrandsController : ControllerBase
             );
             // 400 Bad Request
         }
+    }
+
+    [HttpPut("{Id}")] // PUT http://localhost:5245/api/brands/1
+    public ActionResult<UpdateBrandResponse> Update(
+      [FromRoute] int Id,
+      [FromBody] UpdateBrandRequest request
+  )
+    {
+        if (Id != request.Id)
+            return BadRequest();
+
+        UpdateBrandResponse response = _brandService.Update(request);
+        return Ok(response);
+    }
+
+    [HttpDelete("{Id}")] // DELETE http://localhost:5245/api/brands/1
+    public DeleteBrandResponse Delete([FromRoute] DeleteBrandRequest request) //id burada path variable
+    {
+        DeleteBrandResponse response = _brandService.Delete(request);
+        return response;
     }
 }

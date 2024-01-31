@@ -536,14 +536,14 @@ Console.WriteLine(
 
 //Entity entity = new Entity();
 
-User user = new User(
+ConsoleUI.User user = new ConsoleUI.User(
     firstName: "Hacer Sema",
     lastName: "Aktaş",
     nickName: "Hacer.Aktas",
     email: "hacer@example.com",
     password: "123456"
 );
-Entity user1 = new User(
+Entity user1 = new ConsoleUI.User(
     firstName: "Hacer Sema",
     lastName: "Aktaş",
     nickName: "Hacer.Aktas",

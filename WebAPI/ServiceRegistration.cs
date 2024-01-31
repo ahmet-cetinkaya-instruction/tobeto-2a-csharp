@@ -29,6 +29,15 @@ public static class ServiceRegistration
         cfg.CreateMap<AddBrandRequest, Brand>();
         cfg.CreateMap<Brand, AddBrandResponse>();
 
+        cfg.CreateMap<GetBrandByIdRequest, Brand>();
+        cfg.CreateMap<Brand, GetBrandByIdResponse>();
+
+        cfg.CreateMap<DeleteBrandRequest, Brand>();
+        cfg.CreateMap<Brand, DeleteBrandResponse>();
+
+        cfg.CreateMap<UpdateBrandRequest, Brand>();
+        cfg.CreateMap<Brand, UpdateBrandResponse>();
+
         cfg.CreateMap<AddFuelRequest, Fuel>();
         cfg.CreateMap<Fuel, AddFuelResponse>();
 
@@ -36,6 +45,7 @@ public static class ServiceRegistration
         cfg.CreateMap<Transmission, AddTransmissionResponse>();
 
     }).CreateMapper();
+
 
     public static readonly IBrandService BrandService = new BrandManager(
         BrandDal,
