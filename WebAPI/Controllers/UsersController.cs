@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Requests.User;
+using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,9 +24,10 @@ namespace WebAPI.Controllers
             _userService.Register(request);
         }
         [HttpPost("Login")]
-        public bool Login([FromBody] LoginRequest request)
+        public AccessToken Login([FromBody] LoginRequest request)
         {
             return _userService.Login(request);
         }
     }
 }
+// 6:50
