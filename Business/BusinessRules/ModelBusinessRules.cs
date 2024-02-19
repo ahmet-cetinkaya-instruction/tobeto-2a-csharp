@@ -36,7 +36,6 @@ public class ModelBusinessRules
         if (year < DateTime.UtcNow.AddYears(-20).Year)
             throw new BusinessException("Model year should be in last 20 years.");
     }
-
     public void CheckIfBrandExists(int brandId)
     {
 
