@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Core.DataAccess.EntityFramework
 {
     // T => Type
-    public class EfEntityRepositoryBase<TEntity, TEntityId, TContext> : IEntityRepository<TEntity, TEntityId>
-        where TEntity : Entity<TEntityId>
-        where TContext : DbContext
+    public class EfEntityRepositoryBase<TEntity, TEntityId, TContext> : IEntityRepository<TEntity, TEntityId> 
+        where TEntity : Entity<TEntityId>, new() where TContext : DbContext
     {
         private readonly TContext Context;
 

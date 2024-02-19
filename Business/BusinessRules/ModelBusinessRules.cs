@@ -1,4 +1,6 @@
-﻿using Core.CrossCuttingConcerns.Exceptions;
+﻿using Azure.Core;
+using Business.Abstract;
+using Core.CrossCuttingConcerns.Exceptions;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -7,10 +9,13 @@ namespace Business.BusinessRules;
 public class ModelBusinessRules
 {
     private readonly IModelDal _modelDal;
+    private readonly IBrandService _brandService;
 
-    public ModelBusinessRules(IModelDal modelDal)
+
+    public ModelBusinessRules(IModelDal modelDal, IBrandService brandService)
     {
         _modelDal = modelDal;
+        _brandService = brandService;
     }
 
     public void CheckIfModelNameExists(string name)
@@ -30,5 +35,13 @@ public class ModelBusinessRules
     {
         if (year < DateTime.UtcNow.AddYears(-20).Year)
             throw new BusinessException("Model year should be in last 20 years.");
+    }
+
+    public void CheckIfBrandExists(int brandId)
+    {
+
+        Brand? brand = _brandService.GetById(brandId);
+        if (brand is null)
+            throw new Exception("Böyle bir marka yok.");
     }
 }
