@@ -2,6 +2,7 @@
 using Business.Abstract;
 using Business.BusinessRules;
 using Business.Concrete;
+using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFramework.Contexts;
@@ -22,10 +23,12 @@ public static class ServiceCollectionBusinessExtension
         IConfiguration configuration
     )
     {
+        services.AddScoped<ITokenHelper, JwtTokenHelper>();
+
         services
-            .AddSingleton<IBrandService, BrandManager>()
-            .AddSingleton<IBrandDal, InMemoryBrandDal>()
-            .AddSingleton<BrandBusinessRules>();
+            .AddScoped<IBrandService, BrandManager>()
+            .AddScoped<IBrandDal, EfBrandDal>()
+            .AddScoped<BrandBusinessRules>();
         // Fluent
         // Singleton: Tek bir nesne oluşturur ve herkese onu verir.
         // Ek ödev diğer yöntemleri araştırınız.
@@ -34,6 +37,10 @@ public static class ServiceCollectionBusinessExtension
             .AddScoped<IModelService, ModelManager>()
             .AddScoped<IModelDal, EfModelDal>()
             .AddScoped<ModelBusinessRules>(); // Fluent
+
+        services
+            .AddScoped<IUserService, UserManager>()
+            .AddScoped<IUserDal, EfUserDal>();
 
         services.AddAutoMapper(Assembly.GetExecutingAssembly()); // AutoMapper.Extensions.Microsoft.DependencyInjection NuGet Paketi
         // Reflection yöntemiyle Profile class'ını kalıtım alan tüm class'ları bulur ve AutoMapper'a ekler.
