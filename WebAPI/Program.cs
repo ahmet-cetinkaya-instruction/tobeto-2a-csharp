@@ -1,15 +1,13 @@
 ﻿using Business.DependencyResolvers;
 using Core.CrossCuttingConcerns.Exceptions;
-using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddBusinessServices(builder.Configuration);
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
