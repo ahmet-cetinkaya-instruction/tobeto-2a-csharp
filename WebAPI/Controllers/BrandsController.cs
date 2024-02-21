@@ -40,6 +40,7 @@ public class BrandsController : ControllerBase
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
     [HttpPost] // POST http://localhost:5245/api/brands
+
     public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
     {
         try
