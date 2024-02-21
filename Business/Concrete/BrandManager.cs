@@ -28,8 +28,15 @@ public class BrandManager : IBrandService
 
     // AOP => Aspect Oriented Programming - Autofac
     // Pipeline 
+
+
+    // mediatR, pipeline, cqrs
+    // Auth&Authorization
+    // Role implementasyonu => Claim'lere kullanıcı rollerini db'den ekleyip gelen isteklerde
+    // rol bazlı kontrol yapılması..
     public AddBrandResponse Add(AddBrandRequest request)
     {
+        // BrandAdmin
         if(!_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
         {
             throw new Exception("Bu endpointi çalıştırmak için giriş yapmak zorundasınız!");

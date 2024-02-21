@@ -25,6 +25,8 @@ public class BrandsController : ControllerBase
         // Daha sonra IoC Container yapımızı kurduğumuz Dependency Injection ile daha verimli hale getiricez.
     }
 
+
+
     //[HttpGet]
     //public ActionResult<string> //IActionResult
     //GetList()
