@@ -6,6 +6,7 @@ using Business.Responses.Brand;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace WebAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class BrandsController : ControllerBase
 {
     private readonly IBrandService _brandService; // Field
@@ -40,7 +42,6 @@ public class BrandsController : ControllerBase
 
     //[HttpPost("/add")] // POST http://localhost:5245/api/brands/add
     [HttpPost] // POST http://localhost:5245/api/brands
-
     public ActionResult<AddBrandResponse> Add(AddBrandRequest request)
     {
         try
