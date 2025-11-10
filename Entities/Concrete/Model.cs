@@ -10,8 +10,8 @@ public class Model : Entity<int>
     public string Name { get; set; }
     public short Year { get; set; }
     public decimal DailyPrice { get; set; }
-
     public Model() { }
+
 
     public Model(
         int brandId,
